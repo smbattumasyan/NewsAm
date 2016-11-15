@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  NAViewController.h
 //  NewsAm
 //
 //  Created by Smbat Tumasyan on 11/15/16.
@@ -8,10 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@interface NAViewController : UIViewController
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
 
 @end
 
