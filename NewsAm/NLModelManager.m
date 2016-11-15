@@ -28,7 +28,8 @@
     return self;
 }
 
-- (void)addNews:(NSDictionary *)news {
+- (void)addNews:(NewsList *)news {
+
     NewsList *newsList = [NSEntityDescription insertNewObjectForEntityForName:@"NewsList" inManagedObjectContext:self.coreDataManager.persistentContainer.viewContext];
     newsList.name = @"namesss";
     [self.coreDataManager saveContext];

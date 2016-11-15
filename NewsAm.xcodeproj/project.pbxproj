@@ -22,6 +22,7 @@
 		80D54ACD1DDB44B8003E1C10 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80D54A491DDAF992003E1C10 /* Main.storyboard */; };
 		80D54ACE1DDB44B8003E1C10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80D54A4F1DDAF992003E1C10 /* Assets.xcassets */; };
 		80D54ACF1DDB44B8003E1C10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80D54A511DDAF992003E1C10 /* LaunchScreen.storyboard */; };
+		80D54AD31DDB4CDE003E1C10 /* BusinessLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D54AD21DDB4CDE003E1C10 /* BusinessLogic.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,8 @@
 		80D54AC51DDB421A003E1C10 /* NewsList+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NewsList+CoreDataClass.m"; path = "../NewsList+CoreDataClass.m"; sourceTree = "<group>"; };
 		80D54AC61DDB421A003E1C10 /* NewsList+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NewsList+CoreDataProperties.h"; path = "../NewsList+CoreDataProperties.h"; sourceTree = "<group>"; };
 		80D54AC71DDB421A003E1C10 /* NewsList+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NewsList+CoreDataProperties.m"; path = "../NewsList+CoreDataProperties.m"; sourceTree = "<group>"; };
+		80D54AD11DDB4CDE003E1C10 /* BusinessLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessLogic.h; sourceTree = "<group>"; };
+		80D54AD21DDB4CDE003E1C10 /* BusinessLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessLogic.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +124,7 @@
 		80D54A3F1DDAF992003E1C10 /* NewsAm */ = {
 			isa = PBXGroup;
 			children = (
+				80D54AD01DDB4CB7003E1C10 /* BusinessLogic */,
 				80D54A431DDAF992003E1C10 /* AppDelegate.h */,
 				80D54A441DDAF992003E1C10 /* AppDelegate.m */,
 				80D54A891DDB34DB003E1C10 /* CoreData */,
@@ -216,6 +220,15 @@
 				80D54A981DDB37AF003E1C10 /* NLModelManager.m */,
 			);
 			name = NewsListModel;
+			sourceTree = "<group>";
+		};
+		80D54AD01DDB4CB7003E1C10 /* BusinessLogic */ = {
+			isa = PBXGroup;
+			children = (
+				80D54AD11DDB4CDE003E1C10 /* BusinessLogic.h */,
+				80D54AD21DDB4CDE003E1C10 /* BusinessLogic.m */,
+			);
+			name = BusinessLogic;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -373,6 +386,7 @@
 				80D54ABE1DDB4082003E1C10 /* TFHppleElement.m in Sources */,
 				80D54ABF1DDB4082003E1C10 /* XPathQuery.m in Sources */,
 				80D54AC01DDB4082003E1C10 /* NATableViewCell.m in Sources */,
+				80D54AD31DDB4CDE003E1C10 /* BusinessLogic.m in Sources */,
 				80D54AC11DDB4082003E1C10 /* NAViewController.m in Sources */,
 				80D54AC21DDB4082003E1C10 /* NewsAm.xcdatamodeld in Sources */,
 				80D54AC31DDB4082003E1C10 /* main.m in Sources */,

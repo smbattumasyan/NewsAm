@@ -13,6 +13,8 @@
 
 @interface NAViewController () <UITableViewDelegate, UITableViewDataSource>
 
+@property (strong, nonatomic) NSMutableArray *newsTitles;
+
 @property (strong, nonatomic) NSMutableArray *armNews;
 @property (strong, nonatomic) NSMutableArray *medNews;
 @property (strong, nonatomic) NSMutableArray *sportNews;
@@ -28,14 +30,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 
-    NLModelManager *modelManager = [NLModelManager defaultManager];
+//    NLModelManager *modelManager = [NLModelManager defaultManager];
+//
+//    [modelManager addNews:nil];
+//
+//    NSLog(@"corDataaa :%@", modelManager.fetchedResultsController.fetchedObjects);
 
-    [modelManager addNews:nil];
-
-    NSLog(@"corDataaa :%@", modelManager.fetchedResultsController.fetchedObjects);
-
-
-    [self loadNewsLinks];
+    [self loadNewsName];
+//    [self loadNewsLinks];
 }
 
 
@@ -108,16 +110,18 @@
     NSLog(@"linkLikst: %@ ", self.armNews);
 }
 
-- (void)loadNewsData {
+- (void)loadNewsName {
 
+        NSURL *url = [NSURL URLWithString:@"https://news.am/eng/news/allregions/allthemes/2016/11/15/"];
+        NSString *xPath = @"//div[@class='articles-list casual']/article/div[@class='describe']/div[@class='title']/a";
 
+        NSArray *elements = [self getHTMLElementsFrom:url xPath:xPath];
 
-//
-//    NSURL *url = [NSURL URLWithString:self.armNews[0]];
-//    NSString *xPath = @"//div[@class='news-list short']/a";
-//    NSArray *elements = [self getHTMLElementsFrom:url xPath:xPath];
-
-
+    self.newsTitles = [[NSMutableArray alloc] init];
+    for (TFHppleElement *element in elements) {
+        NSLog(@"name: %@", element.content);
+        [self.newsTitles addObject:element.content];
+    }
 }
 
 - (NSArray *)getHTMLElementsFrom:(NSURL *)url xPath:(NSString *)xPath {
