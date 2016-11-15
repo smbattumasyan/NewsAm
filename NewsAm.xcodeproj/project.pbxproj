@@ -1,0 +1,547 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		80D54A421DDAF992003E1C10 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D54A411DDAF992003E1C10 /* main.m */; };
+		80D54A451DDAF992003E1C10 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D54A441DDAF992003E1C10 /* AppDelegate.m */; };
+		80D54A481DDAF992003E1C10 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D54A471DDAF992003E1C10 /* ViewController.m */; };
+		80D54A4B1DDAF992003E1C10 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80D54A491DDAF992003E1C10 /* Main.storyboard */; };
+		80D54A4E1DDAF992003E1C10 /* NewsAm.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 80D54A4C1DDAF992003E1C10 /* NewsAm.xcdatamodeld */; };
+		80D54A501DDAF992003E1C10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80D54A4F1DDAF992003E1C10 /* Assets.xcassets */; };
+		80D54A531DDAF992003E1C10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80D54A511DDAF992003E1C10 /* LaunchScreen.storyboard */; };
+		80D54A5E1DDAF993003E1C10 /* NewsAmTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D54A5D1DDAF993003E1C10 /* NewsAmTests.m */; };
+		80D54A691DDAF993003E1C10 /* NewsAmUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D54A681DDAF993003E1C10 /* NewsAmUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		80D54A5A1DDAF993003E1C10 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 80D54A351DDAF992003E1C10 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 80D54A3C1DDAF992003E1C10;
+			remoteInfo = NewsAm;
+		};
+		80D54A651DDAF993003E1C10 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 80D54A351DDAF992003E1C10 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 80D54A3C1DDAF992003E1C10;
+			remoteInfo = NewsAm;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		80D54A3D1DDAF992003E1C10 /* NewsAm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsAm.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		80D54A411DDAF992003E1C10 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		80D54A431DDAF992003E1C10 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		80D54A441DDAF992003E1C10 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		80D54A461DDAF992003E1C10 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		80D54A471DDAF992003E1C10 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		80D54A4A1DDAF992003E1C10 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		80D54A4D1DDAF992003E1C10 /* NewsAm.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NewsAm.xcdatamodel; sourceTree = "<group>"; };
+		80D54A4F1DDAF992003E1C10 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		80D54A521DDAF992003E1C10 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		80D54A541DDAF992003E1C10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		80D54A591DDAF993003E1C10 /* NewsAmTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewsAmTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		80D54A5D1DDAF993003E1C10 /* NewsAmTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsAmTests.m; sourceTree = "<group>"; };
+		80D54A5F1DDAF993003E1C10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		80D54A641DDAF993003E1C10 /* NewsAmUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewsAmUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		80D54A681DDAF993003E1C10 /* NewsAmUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsAmUITests.m; sourceTree = "<group>"; };
+		80D54A6A1DDAF993003E1C10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		80D54A3A1DDAF992003E1C10 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80D54A561DDAF993003E1C10 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80D54A611DDAF993003E1C10 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		80D54A341DDAF992003E1C10 = {
+			isa = PBXGroup;
+			children = (
+				80D54A3F1DDAF992003E1C10 /* NewsAm */,
+				80D54A5C1DDAF993003E1C10 /* NewsAmTests */,
+				80D54A671DDAF993003E1C10 /* NewsAmUITests */,
+				80D54A3E1DDAF992003E1C10 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		80D54A3E1DDAF992003E1C10 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				80D54A3D1DDAF992003E1C10 /* NewsAm.app */,
+				80D54A591DDAF993003E1C10 /* NewsAmTests.xctest */,
+				80D54A641DDAF993003E1C10 /* NewsAmUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		80D54A3F1DDAF992003E1C10 /* NewsAm */ = {
+			isa = PBXGroup;
+			children = (
+				80D54A431DDAF992003E1C10 /* AppDelegate.h */,
+				80D54A441DDAF992003E1C10 /* AppDelegate.m */,
+				80D54A461DDAF992003E1C10 /* ViewController.h */,
+				80D54A471DDAF992003E1C10 /* ViewController.m */,
+				80D54A491DDAF992003E1C10 /* Main.storyboard */,
+				80D54A4F1DDAF992003E1C10 /* Assets.xcassets */,
+				80D54A511DDAF992003E1C10 /* LaunchScreen.storyboard */,
+				80D54A541DDAF992003E1C10 /* Info.plist */,
+				80D54A4C1DDAF992003E1C10 /* NewsAm.xcdatamodeld */,
+				80D54A401DDAF992003E1C10 /* Supporting Files */,
+			);
+			path = NewsAm;
+			sourceTree = "<group>";
+		};
+		80D54A401DDAF992003E1C10 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				80D54A411DDAF992003E1C10 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		80D54A5C1DDAF993003E1C10 /* NewsAmTests */ = {
+			isa = PBXGroup;
+			children = (
+				80D54A5D1DDAF993003E1C10 /* NewsAmTests.m */,
+				80D54A5F1DDAF993003E1C10 /* Info.plist */,
+			);
+			path = NewsAmTests;
+			sourceTree = "<group>";
+		};
+		80D54A671DDAF993003E1C10 /* NewsAmUITests */ = {
+			isa = PBXGroup;
+			children = (
+				80D54A681DDAF993003E1C10 /* NewsAmUITests.m */,
+				80D54A6A1DDAF993003E1C10 /* Info.plist */,
+			);
+			path = NewsAmUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		80D54A3C1DDAF992003E1C10 /* NewsAm */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 80D54A6D1DDAF993003E1C10 /* Build configuration list for PBXNativeTarget "NewsAm" */;
+			buildPhases = (
+				80D54A391DDAF992003E1C10 /* Sources */,
+				80D54A3A1DDAF992003E1C10 /* Frameworks */,
+				80D54A3B1DDAF992003E1C10 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NewsAm;
+			productName = NewsAm;
+			productReference = 80D54A3D1DDAF992003E1C10 /* NewsAm.app */;
+			productType = "com.apple.product-type.application";
+		};
+		80D54A581DDAF993003E1C10 /* NewsAmTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 80D54A701DDAF993003E1C10 /* Build configuration list for PBXNativeTarget "NewsAmTests" */;
+			buildPhases = (
+				80D54A551DDAF993003E1C10 /* Sources */,
+				80D54A561DDAF993003E1C10 /* Frameworks */,
+				80D54A571DDAF993003E1C10 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				80D54A5B1DDAF993003E1C10 /* PBXTargetDependency */,
+			);
+			name = NewsAmTests;
+			productName = NewsAmTests;
+			productReference = 80D54A591DDAF993003E1C10 /* NewsAmTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		80D54A631DDAF993003E1C10 /* NewsAmUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 80D54A731DDAF993003E1C10 /* Build configuration list for PBXNativeTarget "NewsAmUITests" */;
+			buildPhases = (
+				80D54A601DDAF993003E1C10 /* Sources */,
+				80D54A611DDAF993003E1C10 /* Frameworks */,
+				80D54A621DDAF993003E1C10 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				80D54A661DDAF993003E1C10 /* PBXTargetDependency */,
+			);
+			name = NewsAmUITests;
+			productName = NewsAmUITests;
+			productReference = 80D54A641DDAF993003E1C10 /* NewsAmUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		80D54A351DDAF992003E1C10 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = "Smbat Tumasyan";
+				TargetAttributes = {
+					80D54A3C1DDAF992003E1C10 = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+					};
+					80D54A581DDAF993003E1C10 = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 80D54A3C1DDAF992003E1C10;
+					};
+					80D54A631DDAF993003E1C10 = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 80D54A3C1DDAF992003E1C10;
+					};
+				};
+			};
+			buildConfigurationList = 80D54A381DDAF992003E1C10 /* Build configuration list for PBXProject "NewsAm" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 80D54A341DDAF992003E1C10;
+			productRefGroup = 80D54A3E1DDAF992003E1C10 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				80D54A3C1DDAF992003E1C10 /* NewsAm */,
+				80D54A581DDAF993003E1C10 /* NewsAmTests */,
+				80D54A631DDAF993003E1C10 /* NewsAmUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		80D54A3B1DDAF992003E1C10 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80D54A531DDAF992003E1C10 /* LaunchScreen.storyboard in Resources */,
+				80D54A501DDAF992003E1C10 /* Assets.xcassets in Resources */,
+				80D54A4B1DDAF992003E1C10 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80D54A571DDAF993003E1C10 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80D54A621DDAF993003E1C10 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		80D54A391DDAF992003E1C10 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80D54A481DDAF992003E1C10 /* ViewController.m in Sources */,
+				80D54A451DDAF992003E1C10 /* AppDelegate.m in Sources */,
+				80D54A4E1DDAF992003E1C10 /* NewsAm.xcdatamodeld in Sources */,
+				80D54A421DDAF992003E1C10 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80D54A551DDAF993003E1C10 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80D54A5E1DDAF993003E1C10 /* NewsAmTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80D54A601DDAF993003E1C10 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80D54A691DDAF993003E1C10 /* NewsAmUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		80D54A5B1DDAF993003E1C10 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 80D54A3C1DDAF992003E1C10 /* NewsAm */;
+			targetProxy = 80D54A5A1DDAF993003E1C10 /* PBXContainerItemProxy */;
+		};
+		80D54A661DDAF993003E1C10 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 80D54A3C1DDAF992003E1C10 /* NewsAm */;
+			targetProxy = 80D54A651DDAF993003E1C10 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		80D54A491DDAF992003E1C10 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				80D54A4A1DDAF992003E1C10 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		80D54A511DDAF992003E1C10 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				80D54A521DDAF992003E1C10 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		80D54A6B1DDAF993003E1C10 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		80D54A6C1DDAF993003E1C10 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		80D54A6E1DDAF993003E1C10 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = NewsAm/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Smbat.Tumasyan.NewsAm;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		80D54A6F1DDAF993003E1C10 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = NewsAm/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Smbat.Tumasyan.NewsAm;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		80D54A711DDAF993003E1C10 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = NewsAmTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Smbat.Tumasyan.NewsAmTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NewsAm.app/NewsAm";
+			};
+			name = Debug;
+		};
+		80D54A721DDAF993003E1C10 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = NewsAmTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Smbat.Tumasyan.NewsAmTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NewsAm.app/NewsAm";
+			};
+			name = Release;
+		};
+		80D54A741DDAF993003E1C10 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = NewsAmUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Smbat.Tumasyan.NewsAmUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = NewsAm;
+			};
+			name = Debug;
+		};
+		80D54A751DDAF993003E1C10 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = NewsAmUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Smbat.Tumasyan.NewsAmUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = NewsAm;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		80D54A381DDAF992003E1C10 /* Build configuration list for PBXProject "NewsAm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				80D54A6B1DDAF993003E1C10 /* Debug */,
+				80D54A6C1DDAF993003E1C10 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		80D54A6D1DDAF993003E1C10 /* Build configuration list for PBXNativeTarget "NewsAm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				80D54A6E1DDAF993003E1C10 /* Debug */,
+				80D54A6F1DDAF993003E1C10 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		80D54A701DDAF993003E1C10 /* Build configuration list for PBXNativeTarget "NewsAmTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				80D54A711DDAF993003E1C10 /* Debug */,
+				80D54A721DDAF993003E1C10 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		80D54A731DDAF993003E1C10 /* Build configuration list for PBXNativeTarget "NewsAmUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				80D54A741DDAF993003E1C10 /* Debug */,
+				80D54A751DDAF993003E1C10 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		80D54A4C1DDAF992003E1C10 /* NewsAm.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				80D54A4D1DDAF992003E1C10 /* NewsAm.xcdatamodel */,
+			);
+			currentVersion = 80D54A4D1DDAF992003E1C10 /* NewsAm.xcdatamodel */;
+			path = NewsAm.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 80D54A351DDAF992003E1C10 /* Project object */;
+}
