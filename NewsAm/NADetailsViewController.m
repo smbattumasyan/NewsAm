@@ -10,6 +10,9 @@
 
 @interface NADetailsViewController ()
 
+//------------------------------------------------------------------------------------------
+#pragma mark - IBOutlets
+//------------------------------------------------------------------------------------------
 @property (weak, nonatomic) IBOutlet UIWebView *naWebView;
 
 
@@ -17,18 +20,29 @@
 
 @implementation NADetailsViewController
 
+//------------------------------------------------------------------------------------------
+#pragma mark - Life Cyrcle
+//------------------------------------------------------------------------------------------
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
-    NSURL *url = [NSURL URLWithString:self.link];
-    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
-    [self.naWebView loadRequest:urlRequest];
+    [self loadURL];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+//------------------------------------------------------------------------------------------
+#pragma mark - Private Methods
+//------------------------------------------------------------------------------------------
+
+- (void)loadURL {
+    NSURL *url = [NSURL URLWithString:self.link];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    [self.naWebView loadRequest:urlRequest];
 }
 
 /*

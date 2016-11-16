@@ -13,31 +13,37 @@
 #import "NACoordinator.h"
 #import "NADetailsViewController.h"
 
-@interface NAViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface NAViewController () <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
 
+//------------------------------------------------------------------------------------------
+#pragma mark - Properties
+//------------------------------------------------------------------------------------------
 @property (strong, nonatomic) NSMutableArray *newsData;
-
 @property (strong, nonatomic) NACoordinator *naCoordinator;
-
 @property (strong, nonatomic) NLModelManager *modelManager;
-//@property (strong, nonatomic) NSIndexPath *selectedIndexPath;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+//------------------------------------------------------------------------------------------
+#pragma mark - IBOutlets
+//------------------------------------------------------------------------------------------
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
 @implementation NAViewController
 
+//-------------------------------------------------------------------------------------------
+#pragma mark - Life Cyrcle
+//-------------------------------------------------------------------------------------------
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
 
-    self.naCoordinator = [[NACoordinator alloc] init];
-    [self loadNewsData];
     self.modelManager = [NLModelManager defaultManager];
+    self.naCoordinator = [[NACoordinator alloc] init];
+    self.modelManager.fetchedResultsController.delegate = self;
+    [self loadNewsData];
+
 }
-
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -80,20 +86,15 @@
 - (NSString *)newsLink:(TFHppleElement *)link {
 
     NSString *armNews = nil;
-
-
         if ([[[link objectForKey:@"href"] substringToIndex:3] isEqualToString:@"arm"]) {
              armNews = [@"https://news.am/" stringByAppendingString:[link objectForKey:@"href"]];
         } else if ([[[link objectForKey:@"href"] substringToIndex:2] isEqualToString:@"//"]) {
             armNews = [@"https:" stringByAppendingString:[link objectForKey:@"href"]];
         }
 
-    NSLog(@"linkLikst: %@ ", armNews);
     return armNews;
 }
 
-
-// /div[@class='describe']/div[@class='title']/a
 - (void)loadNewsData {
 
         NSURL *url = [NSURL URLWithString:@"https://news.am/arm/news/allregions/allthemes/2016/11/15/"];
@@ -104,28 +105,14 @@
     for (TFHppleElement *article in articles) {
 
         TFHppleElement *newsTitle = [[article searchWithXPathQuery:@"//div[@class='describe']/div[@class='title']/a"] firstObject];
-
-//        NSLog(@"elementtt: %@", newsTitle.content);
-
         TFHppleElement *newsDescription = [[article searchWithXPathQuery:@"//div[@class='describe']/div[@class='text']"] firstObject];
-//            NSLog(@"newsdescrioption: %@", newsDescription.content);
-
         TFHppleElement *imgURl = [[article searchWithXPathQuery:@"//a/img"] firstObject];
         NSString *imageURL = [imgURl objectForKey:@"src"];
-//        NSLog(@"photoLink: %@", imageURL);
-
         if (![[imageURL substringToIndex:4] isEqualToString:@"http"]) {
             imageURL = [@"https://news.am" stringByAppendingString:[imgURl objectForKey:@"src"]];
         }
-//        NSLog(@"photoLink: %@", imageURL);
         TFHppleElement *dateTime = [[article searchWithXPathQuery:@"//div[@class='describe']/div[@class='date']/time"] firstObject];
-//        NSLog(@"element: %@",[self dateFromString:dateTime.content]);
-
         TFHppleElement *link = [[article searchWithXPathQuery:@"//div[@class='describe']/div[@class='title']/a"] firstObject];
-
-
-
-
         [self.newsData addObject:@{@"newsTitle" : newsTitle.content,
                                    @"newsDescription" : newsDescription.content,
                                    @"imgURL" : imageURL,
@@ -138,10 +125,8 @@
 }
 
 - (NSDate *)dateFromString:(NSString *)stringDate {
-//yyyy-MM-ddZHH:mm:ss
+
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    // this is imporant - we set our input date format to match our input string
-    // if format doesn't match you'll get nil from your string, so be careful
     [dateFormatter setDateFormat:@"HH:mm, dd.MM.yyyy"];
     return [dateFormatter dateFromString:stringDate];
 }
@@ -153,18 +138,61 @@
     return [doc searchWithXPathQuery:xPath];
 }
 
+//-------------------------------------------------------------------------------------------
+#pragma mark - NSFetchedResultsControllerDelegate
+//-------------------------------------------------------------------------------------------
+
+- (void)controllerWillChangeContent: (NSFetchedResultsController *)controller
+{
+    [self.tableView beginUpdates];
+}
+
+- (void)controller:(NSFetchedResultsController *)controller
+   didChangeObject:(id)anObject
+       atIndexPath:(NSIndexPath *)indexPath
+     forChangeType:(NSFetchedResultsChangeType)type
+      newIndexPath:(NSIndexPath *)newIndexPath
+{
+    switch(type) {
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertRowsAtIndexPaths: @[newIndexPath]
+                                  withRowAnimation: UITableViewRowAnimationFade];
+            break;
+
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteRowsAtIndexPaths: @[indexPath]
+                                  withRowAnimation: UITableViewRowAnimationFade];
+            break;
+
+        case NSFetchedResultsChangeUpdate:
+            [self.tableView reloadRowsAtIndexPaths: @[indexPath]
+                                  withRowAnimation: UITableViewRowAnimationAutomatic];
+            break;
+
+        case NSFetchedResultsChangeMove:
+            [self.tableView deleteRowsAtIndexPaths: @[indexPath]
+                                  withRowAnimation: UITableViewRowAnimationFade];
+            [self.tableView insertRowsAtIndexPaths: @[newIndexPath]
+                                  withRowAnimation: UITableViewRowAnimationFade];
+            break;
+    }
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.tableView endUpdates];
+}
+
 //------------------------------------------------------------------------------------------
 #pragma mark - Navigation
 //------------------------------------------------------------------------------------------
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"NADetailsViewController"]) {
         NADetailsViewController *naDetailsVC = [segue destinationViewController];
         NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
         NewsList *newsList = [self.modelManager.fetchedResultsController objectAtIndexPath:selectedIndexPath];
-        NSLog(@"newsList:%@", newsList);
         naDetailsVC.link = newsList.link;
     }
 }

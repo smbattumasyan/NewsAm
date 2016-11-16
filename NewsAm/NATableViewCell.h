@@ -11,6 +11,7 @@
 
 @interface NATableViewCell : UITableViewCell
 
+#pragma Mark - Propertyes
 @property (strong, nonatomic) NewsList *aNews;
 
 @end

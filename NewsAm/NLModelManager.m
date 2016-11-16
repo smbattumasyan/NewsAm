@@ -10,6 +10,10 @@
 
 @implementation NLModelManager
 
+//------------------------------------------------------------------------------------------
+#pragma mark - Class Methods
+//------------------------------------------------------------------------------------------
+
 + (instancetype)defaultManager {
     static NLModelManager *defaultManager = nil;
     static dispatch_once_t onceToken = 0;

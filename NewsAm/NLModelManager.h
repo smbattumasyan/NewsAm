@@ -12,11 +12,12 @@
 
 @interface NLModelManager : NSObject
 
+#pragma Mark - Propertyes
 @property (strong, nonatomic) CoreDataManager *coreDataManager;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 
+#pragma Mark - Class Methods
 + (instancetype)defaultManager;
 - (void)addNews:(NSArray *)news;
-//- (void)deleteMessage:(NewsList *)message;
 
 @end

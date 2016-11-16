@@ -10,6 +10,9 @@
 
 @interface NATableViewCell ()
 
+//------------------------------------------------------------------------------------------
+#pragma mark - IBOutlets
+//------------------------------------------------------------------------------------------
 @property (weak, nonatomic) IBOutlet UIImageView *newsImageView;
 @property (weak, nonatomic) IBOutlet UILabel *newsNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *newsDescriptionLabel;
@@ -19,6 +22,9 @@
 
 @implementation NATableViewCell
 
+//------------------------------------------------------------------------------------------
+#pragma mark - Class Methods
+//------------------------------------------------------------------------------------------
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code

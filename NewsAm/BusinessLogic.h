@@ -13,6 +13,7 @@
 
 @property(strong, nonatomic)NLModelManager *nlModelManager;
 
+#pragma Mark - Class Methods
 + (instancetype)sharedInstance;
 - (void)saveNews:(NSArray *)newsList;
 

@@ -11,9 +11,10 @@
 
 @interface CoreDataManager : NSObject
 
+#pragma Mark - Propertyes
 @property (readonly, strong) NSPersistentContainer *persistentContainer;
 
-
+#pragma Mark - Class Methods
 + (instancetype)defaultManager;
 - (void)saveContext;
 

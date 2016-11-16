@@ -10,6 +10,7 @@
 
 @interface NADetailsViewController : UIViewController
 
+#pragma Mark - Propertyes
 @property(strong, nonatomic)NSString *link;
 
 @end

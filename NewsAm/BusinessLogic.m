@@ -11,6 +11,10 @@
 
 @implementation BusinessLogic
 
+//------------------------------------------------------------------------------------------
+#pragma mark - Class Methods
+//------------------------------------------------------------------------------------------
+
 + (instancetype)sharedInstance {
     static BusinessLogic *sharedInstance = nil;
     static dispatch_once_t onceToken = 0;
@@ -42,7 +46,6 @@
             }
         }
     }
-    NSLog(@"newNewsList: %@", newNewsList);
     [self.nlModelManager addNews:newNewsList];
 }
 

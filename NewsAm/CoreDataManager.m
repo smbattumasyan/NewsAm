@@ -10,6 +10,9 @@
 
 @implementation CoreDataManager
 
+//------------------------------------------------------------------------------------------
+#pragma mark - Class Methods
+//------------------------------------------------------------------------------------------
 
 + (instancetype)defaultManager {
     static CoreDataManager *defaultManager = nil;
@@ -20,7 +23,10 @@
     return defaultManager;
 }
 
+//------------------------------------------------------------------------------------------
 #pragma mark - Core Data stack
+//------------------------------------------------------------------------------------------
+
 
 @synthesize persistentContainer = _persistentContainer;
 
@@ -52,7 +58,9 @@
     return _persistentContainer;
 }
 
+//------------------------------------------------------------------------------------------
 #pragma mark - Core Data Saving support
+//------------------------------------------------------------------------------------------
 
 - (void)saveContext {
     NSManagedObjectContext *context = self.persistentContainer.viewContext;
