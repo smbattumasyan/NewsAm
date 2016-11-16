@@ -30,4 +30,12 @@
     // Configure the view for the selected state
 }
 
+- (void)setANews:(NewsList *)aNews {
+    _aNews = aNews;
+    self.newsNameLabel.text = _aNews.name;
+    self.newsDescriptionLabel.text = _aNews.newsDescription;
+    NSURL *imageURL = [NSURL URLWithString:_aNews.imgUrl];
+    self.newsImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageURL]];
+}
+
 @end

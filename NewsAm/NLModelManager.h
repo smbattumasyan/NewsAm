@@ -16,7 +16,7 @@
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 
 + (instancetype)defaultManager;
-- (void)addNews:(NSDictionary *)news;
+- (void)addNews:(NSArray *)news;
 //- (void)deleteMessage:(NewsList *)message;
 
 @end

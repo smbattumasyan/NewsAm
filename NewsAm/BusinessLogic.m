@@ -29,4 +29,8 @@
     return self;
 }
 
+- (void)saveNews:(NSArray *)newsList {
+    [self.nlModelManager addNews:newsList];
+}
+
 @end

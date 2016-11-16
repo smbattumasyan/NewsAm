@@ -13,4 +13,7 @@
 
 @property(strong, nonatomic)NLModelManager *nlModelManager;
 
++ (instancetype)sharedInstance;
+- (void)saveNews:(NSArray *)newsList;
+
 @end

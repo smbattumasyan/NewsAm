@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NewsList+CoreDataProperties.h"
 
 @interface NATableViewCell : UITableViewCell
+
+@property (strong, nonatomic) NewsList *aNews;
 
 @end

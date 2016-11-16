@@ -28,10 +28,16 @@
     return self;
 }
 
-- (void)addNews:(NewsList *)news {
+- (void)addNews:(NSArray *)news {
 
-    NewsList *newsList = [NSEntityDescription insertNewObjectForEntityForName:@"NewsList" inManagedObjectContext:self.coreDataManager.persistentContainer.viewContext];
-    newsList.name = @"namesss";
+    for (NSDictionary *dict in news) {
+        NewsList *newsList = [NSEntityDescription insertNewObjectForEntityForName:@"NewsList" inManagedObjectContext:self.coreDataManager.persistentContainer.viewContext];
+        newsList.name = dict[@"newsTitle"];
+        newsList.newsDescription = dict[@"newsDescription"];
+        newsList.imgUrl = dict[@"imgURL"];
+        newsList.date = dict[@"date"];
+    }
+
     [self.coreDataManager saveContext];
 }
 

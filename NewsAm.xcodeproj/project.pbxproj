@@ -23,6 +23,7 @@
 		80D54ACE1DDB44B8003E1C10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80D54A4F1DDAF992003E1C10 /* Assets.xcassets */; };
 		80D54ACF1DDB44B8003E1C10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80D54A511DDAF992003E1C10 /* LaunchScreen.storyboard */; };
 		80D54AD31DDB4CDE003E1C10 /* BusinessLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D54AD21DDB4CDE003E1C10 /* BusinessLogic.m */; };
+		80D54AD61DDC4B3E003E1C10 /* NACoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D54AD51DDC4B3E003E1C10 /* NACoordinator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,8 @@
 		80D54AC71DDB421A003E1C10 /* NewsList+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NewsList+CoreDataProperties.m"; path = "../NewsList+CoreDataProperties.m"; sourceTree = "<group>"; };
 		80D54AD11DDB4CDE003E1C10 /* BusinessLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessLogic.h; sourceTree = "<group>"; };
 		80D54AD21DDB4CDE003E1C10 /* BusinessLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessLogic.m; sourceTree = "<group>"; };
+		80D54AD41DDC4B3E003E1C10 /* NACoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NACoordinator.h; sourceTree = "<group>"; };
+		80D54AD51DDC4B3E003E1C10 /* NACoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NACoordinator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +194,8 @@
 		80D54A881DDB1B9A003E1C10 /* NAViewController */ = {
 			isa = PBXGroup;
 			children = (
+				80D54AD41DDC4B3E003E1C10 /* NACoordinator.h */,
+				80D54AD51DDC4B3E003E1C10 /* NACoordinator.m */,
 				80D54A851DDB1B90003E1C10 /* NATableViewCell.h */,
 				80D54A861DDB1B90003E1C10 /* NATableViewCell.m */,
 				80D54A461DDAF992003E1C10 /* NAViewController.h */,
@@ -387,6 +392,7 @@
 				80D54ABF1DDB4082003E1C10 /* XPathQuery.m in Sources */,
 				80D54AC01DDB4082003E1C10 /* NATableViewCell.m in Sources */,
 				80D54AD31DDB4CDE003E1C10 /* BusinessLogic.m in Sources */,
+				80D54AD61DDC4B3E003E1C10 /* NACoordinator.m in Sources */,
 				80D54AC11DDB4082003E1C10 /* NAViewController.m in Sources */,
 				80D54AC21DDB4082003E1C10 /* NewsAm.xcdatamodeld in Sources */,
 				80D54AC31DDB4082003E1C10 /* main.m in Sources */,

@@ -10,16 +10,15 @@
 #import "TFHpple.h"
 #import "NATableViewCell.h"
 #import "NLModelManager.h"
+#import "NACoordinator.h"
 
 @interface NAViewController () <UITableViewDelegate, UITableViewDataSource>
 
-@property (strong, nonatomic) NSMutableArray *newsTitles;
+@property (strong, nonatomic) NSMutableArray *newsData;
 
-@property (strong, nonatomic) NSMutableArray *armNews;
-@property (strong, nonatomic) NSMutableArray *medNews;
-@property (strong, nonatomic) NSMutableArray *sportNews;
-@property (strong, nonatomic) NSMutableArray *styleNews;
-@property (strong, nonatomic) NSMutableArray *newsName;
+@property (strong, nonatomic) NACoordinator *naCoordinator;
+
+@property (strong, nonatomic) NLModelManager *modelManager;
 
 
 @end
@@ -30,13 +29,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 
-//    NLModelManager *modelManager = [NLModelManager defaultManager];
-//
-//    [modelManager addNews:nil];
-//
-//    NSLog(@"corDataaa :%@", modelManager.fetchedResultsController.fetchedObjects);
+    self.naCoordinator = [[NACoordinator alloc] init];
 
-    [self loadNewsName];
+    [self loadNewsData];
+
+    self.modelManager = [NLModelManager defaultManager];
+
+//    NSLog(@"corDataaa :%@", self.modelManager.fetchedResultsController.fetchedObjects);
+
+
 //    [self loadNewsLinks];
 }
 
@@ -52,7 +53,7 @@
 //-------------------------------------------------------------------------------------------
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.armNews.count;
+    return self.modelManager.fetchedResultsController.fetchedObjects.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -65,7 +66,9 @@
         cell = [[NATableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
 
-    cell.textLabel.text = self.armNews[indexPath.row];
+    NewsList *newsList = [self.modelManager.fetchedResultsController objectAtIndexPath:indexPath];
+
+    cell.aNews = newsList;
     return cell;
 }
 
@@ -73,55 +76,89 @@
 #pragma mark - Private Methods
 //-------------------------------------------------------------------------------------------
 
-- (void)loadNewsLinks {
+//- (void)loadNewsLinks {
+//
+//    NSURL *url = [NSURL URLWithString:@"https://news.am/eng/news/allregions/allthemes/2016/11/15/"];
+//    NSString *xPath = @"//div[@class='articles-list casual']/article/div[@class='describe']/div[@class='title']/a";
+//    NSArray *elements = [self getHTMLElementsFrom:url xPath:xPath];
+//
+////    NSLog(@"elements: %@", elements);
+//    /*
+//     //div[@class='dl']/table/tr/td[@class='r']"
+//     */
+//    self.armNews = [[NSMutableArray alloc] init];
+//    self.medNews = [[NSMutableArray alloc] init];
+//    self.sportNews = [[NSMutableArray alloc] init];
+//    self.styleNews = [[NSMutableArray alloc] init];
+//    self.newsName = [[NSMutableArray alloc] init];
+//
+//    for (TFHppleElement *element in elements) {
+//        //        NSLog(@"element: %@", [element objectForKey:@"href"]);
+//
+//        NSLog(@"elements: %@", element.content);
+//        [self.newsName addObject:element.content];
+//        if ([[[element objectForKey:@"href"] substringToIndex:3] isEqualToString:@"arm"]) {
+//            [self.armNews addObject:[@"https://news.am/" stringByAppendingString:[element objectForKey:@"href"]]];
+//        } else if ([[[element objectForKey:@"href"] substringToIndex:4] isEqualToString:@"//me"]) {
+//            [self.armNews addObject:[@"https:" stringByAppendingString:[element objectForKey:@"href"]]];
+//        } else if ([[[element objectForKey:@"href"] substringToIndex:4] isEqualToString:@"//sp"]) {
+//            [self.armNews addObject:[@"https:" stringByAppendingString:[element objectForKey:@"href"]]];
+//        } else if ([[[element objectForKey:@"href"] substringToIndex:4] isEqualToString:@"//st"]) {
+//            [self.armNews addObject:[@"https:" stringByAppendingString:[element objectForKey:@"href"]]];
+//        }
+//
+//        //        [linkList addObject:[element objectForKey:@"href"]];
+//    }
+//
+//    NSLog(@"linkLikst: %@ ", self.armNews);
+//}
+// /div[@class='describe']/div[@class='title']/a
+- (void)loadNewsData {
 
-    NSURL *url = [NSURL URLWithString:@"https://news.am/eng/news/allregions/allthemes/2016/11/15/"];
-    NSString *xPath = @"//div[@class='articles-list casual']/article/div[@class='describe']/div[@class='title']/a";
-    NSArray *elements = [self getHTMLElementsFrom:url xPath:xPath];
+        NSURL *url = [NSURL URLWithString:@"https://news.am/arm/news/allregions/allthemes/2016/11/15/"];
+        NSString *xPath = @"//div[@class='articles-list casual']/article";
+        NSArray *articles = [self getHTMLElementsFrom:url xPath:xPath];
+    self.newsData = [[NSMutableArray alloc] init];
 
-//    NSLog(@"elements: %@", elements);
-    /*
-     //div[@class='dl']/table/tr/td[@class='r']"
-     */
-    self.armNews = [[NSMutableArray alloc] init];
-    self.medNews = [[NSMutableArray alloc] init];
-    self.sportNews = [[NSMutableArray alloc] init];
-    self.styleNews = [[NSMutableArray alloc] init];
-    self.newsName = [[NSMutableArray alloc] init];
+    for (TFHppleElement *article in articles) {
 
-    for (TFHppleElement *element in elements) {
-        //        NSLog(@"element: %@", [element objectForKey:@"href"]);
+        TFHppleElement *newsTitle = [[article searchWithXPathQuery:@"//div[@class='describe']/div[@class='title']/a"] firstObject];
 
-        NSLog(@"elements: %@", element.content);
-        [self.newsName addObject:element.content];
-        if ([[[element objectForKey:@"href"] substringToIndex:3] isEqualToString:@"arm"]) {
-            [self.armNews addObject:[@"https://news.am/" stringByAppendingString:[element objectForKey:@"href"]]];
-        } else if ([[[element objectForKey:@"href"] substringToIndex:4] isEqualToString:@"//me"]) {
-            [self.armNews addObject:[@"https:" stringByAppendingString:[element objectForKey:@"href"]]];
-        } else if ([[[element objectForKey:@"href"] substringToIndex:4] isEqualToString:@"//sp"]) {
-            [self.armNews addObject:[@"https:" stringByAppendingString:[element objectForKey:@"href"]]];
-        } else if ([[[element objectForKey:@"href"] substringToIndex:4] isEqualToString:@"//st"]) {
-            [self.armNews addObject:[@"https:" stringByAppendingString:[element objectForKey:@"href"]]];
+//        NSLog(@"elementtt: %@", newsTitle.content);
+
+        TFHppleElement *newsDescription = [[article searchWithXPathQuery:@"//div[@class='describe']/div[@class='text']"] firstObject];
+//            NSLog(@"newsdescrioption: %@", newsDescription.content);
+
+        TFHppleElement *imgURl = [[article searchWithXPathQuery:@"//a/img"] firstObject];
+        NSString *imageURL = [imgURl objectForKey:@"src"];
+        NSLog(@"photoLink: %@", imageURL);
+
+        if (![[imageURL substringToIndex:4] isEqualToString:@"http"]) {
+            imageURL = [@"https://news.am" stringByAppendingString:[imgURl objectForKey:@"src"]];
         }
+        NSLog(@"photoLink: %@", imageURL);
+        TFHppleElement *dateTime = [[article searchWithXPathQuery:@"//div[@class='describe']/div[@class='date']/time"] firstObject];
+//        NSLog(@"element: %@",[self dateFromString:dateTime.content]);
 
-        //        [linkList addObject:[element objectForKey:@"href"]];
+
+
+        [self.newsData addObject:@{@"newsTitle" : newsTitle.content,
+                                   @"newsDescription" : newsDescription.content,
+                                   @"imgURL" : imageURL,
+                                   @"date" : [self dateFromString:dateTime.content]}];
+
     }
 
-    NSLog(@"linkLikst: %@ ", self.armNews);
+    [self.naCoordinator saveNewsDataToDatabase:self.newsData];
 }
 
-- (void)loadNewsName {
-
-        NSURL *url = [NSURL URLWithString:@"https://news.am/eng/news/allregions/allthemes/2016/11/15/"];
-        NSString *xPath = @"//div[@class='articles-list casual']/article/div[@class='describe']/div[@class='title']/a";
-
-        NSArray *elements = [self getHTMLElementsFrom:url xPath:xPath];
-
-    self.newsTitles = [[NSMutableArray alloc] init];
-    for (TFHppleElement *element in elements) {
-        NSLog(@"name: %@", element.content);
-        [self.newsTitles addObject:element.content];
-    }
+- (NSDate *)dateFromString:(NSString *)stringDate {
+//yyyy-MM-ddZHH:mm:ss
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    // this is imporant - we set our input date format to match our input string
+    // if format doesn't match you'll get nil from your string, so be careful
+    [dateFormatter setDateFormat:@"HH:mm, dd.MM.yyyy"];
+    return [dateFormatter dateFromString:stringDate];
 }
 
 - (NSArray *)getHTMLElementsFrom:(NSURL *)url xPath:(NSString *)xPath {
