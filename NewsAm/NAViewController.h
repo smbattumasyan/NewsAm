@@ -10,6 +10,5 @@
 
 @interface NAViewController : UIViewController
 
-
 @end
 

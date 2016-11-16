@@ -139,11 +139,11 @@
 		80D54A3F1DDAF992003E1C10 /* NewsAm */ = {
 			isa = PBXGroup;
 			children = (
-				80D54AD01DDB4CB7003E1C10 /* BusinessLogic */,
 				80D54A431DDAF992003E1C10 /* AppDelegate.h */,
 				80D54A441DDAF992003E1C10 /* AppDelegate.m */,
 				80D54A891DDB34DB003E1C10 /* CoreData */,
 				80D54A761DDAFA0C003E1C10 /* hpple */,
+				80D54AD01DDB4CB7003E1C10 /* BusinessLogic */,
 				80D54A881DDB1B9A003E1C10 /* NAViewController */,
 				807D7EE11DDC93160028317C /* NADetailsViewController */,
 				80D54A491DDAF992003E1C10 /* Main.storyboard */,

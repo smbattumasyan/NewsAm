@@ -46,7 +46,6 @@
     [self.coreDataManager saveContext];
 }
 
-
 - (NSFetchedResultsController *)fetchedResultsController
 {
     if (_fetchedResultsController != nil) {
@@ -66,7 +65,5 @@
 
     return _fetchedResultsController;
 }
-
-
 
 @end

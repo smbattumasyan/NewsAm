@@ -13,7 +13,7 @@
 @interface NLModelManager : NSObject
 
 #pragma Mark - Propertyes
-@property (strong, nonatomic) CoreDataManager *coreDataManager;
+@property (strong, nonatomic) CoreDataManager            *coreDataManager;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 
 #pragma Mark - Class Methods

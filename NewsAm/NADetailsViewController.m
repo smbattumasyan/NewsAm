@@ -15,7 +15,6 @@
 //------------------------------------------------------------------------------------------
 @property (weak, nonatomic) IBOutlet UIWebView *naWebView;
 
-
 @end
 
 @implementation NADetailsViewController

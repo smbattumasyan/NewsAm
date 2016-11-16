@@ -19,7 +19,7 @@
 #pragma mark - Properties
 //------------------------------------------------------------------------------------------
 @property (strong, nonatomic) NSMutableArray *newsData;
-@property (strong, nonatomic) NACoordinator *naCoordinator;
+@property (strong, nonatomic) NACoordinator  *naCoordinator;
 @property (strong, nonatomic) NLModelManager *modelManager;
 
 //------------------------------------------------------------------------------------------
@@ -38,11 +38,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.modelManager = [NLModelManager defaultManager];
+    self.modelManager  = [NLModelManager defaultManager];
     self.naCoordinator = [[NACoordinator alloc] init];
     self.modelManager.fetchedResultsController.delegate = self;
     [self loadNewsData];
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -59,25 +58,21 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
     static NSString *identifier = @"NATableViewIdentifier";
-
-    NATableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-
+    NATableViewCell *cell       = [tableView dequeueReusableCellWithIdentifier:identifier];
     if(cell == nil) {
-
         cell = [[NATableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
-
     NewsList *newsList = [self.modelManager.fetchedResultsController objectAtIndexPath:indexPath];
+    cell.aNews         = newsList;
 
-    cell.aNews = newsList;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self performSegueWithIdentifier:@"NADetailsViewController" sender:self];
 }
-
 
 //-------------------------------------------------------------------------------------------
 #pragma mark - Private Methods
@@ -89,7 +84,7 @@
         if ([[[link objectForKey:@"href"] substringToIndex:3] isEqualToString:@"arm"]) {
              armNews = [@"https://news.am/" stringByAppendingString:[link objectForKey:@"href"]];
         } else if ([[[link objectForKey:@"href"] substringToIndex:2] isEqualToString:@"//"]) {
-            armNews = [@"https:" stringByAppendingString:[link objectForKey:@"href"]];
+            armNews  = [@"https:" stringByAppendingString:[link objectForKey:@"href"]];
         }
 
     return armNews;
@@ -97,8 +92,8 @@
 
 - (void)loadNewsData {
 
-        NSURL *url = [NSURL URLWithString:@"https://news.am/arm/news/allregions/allthemes/2016/11/15/"];
-        NSString *xPath = @"//div[@class='articles-list casual']/article";
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://news.am/arm/news/allregions/allthemes/%@",[self stringFromDate:[NSDate date]]]];
+        NSString *xPath   = @"//div[@class='articles-list casual']/article";
         NSArray *articles = [self getHTMLElementsFrom:url xPath:xPath];
     self.newsData = [[NSMutableArray alloc] init];
 
@@ -107,7 +102,7 @@
         TFHppleElement *newsTitle = [[article searchWithXPathQuery:@"//div[@class='describe']/div[@class='title']/a"] firstObject];
         TFHppleElement *newsDescription = [[article searchWithXPathQuery:@"//div[@class='describe']/div[@class='text']"] firstObject];
         TFHppleElement *imgURl = [[article searchWithXPathQuery:@"//a/img"] firstObject];
-        NSString *imageURL = [imgURl objectForKey:@"src"];
+        NSString *imageURL     = [imgURl objectForKey:@"src"];
         if (![[imageURL substringToIndex:4] isEqualToString:@"http"]) {
             imageURL = [@"https://news.am" stringByAppendingString:[imgURl objectForKey:@"src"]];
         }
@@ -129,6 +124,14 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"HH:mm, dd.MM.yyyy"];
     return [dateFormatter dateFromString:stringDate];
+}
+
+- (NSString *)stringFromDate:(NSDate *)date {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy/MM/dd"];
+//    [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"..."]];
+
+    return [formatter stringFromDate:date];
 }
 
 - (NSArray *)getHTMLElementsFrom:(NSURL *)url xPath:(NSString *)xPath {
@@ -193,7 +196,7 @@
         NADetailsViewController *naDetailsVC = [segue destinationViewController];
         NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
         NewsList *newsList = [self.modelManager.fetchedResultsController objectAtIndexPath:selectedIndexPath];
-        naDetailsVC.link = newsList.link;
+        naDetailsVC.link   = newsList.link;
     }
 }
 

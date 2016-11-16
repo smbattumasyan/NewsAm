@@ -14,9 +14,8 @@
 #pragma mark - IBOutlets
 //------------------------------------------------------------------------------------------
 @property (weak, nonatomic) IBOutlet UIImageView *newsImageView;
-@property (weak, nonatomic) IBOutlet UILabel *newsNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *newsDescriptionLabel;
-
+@property (weak, nonatomic) IBOutlet UILabel     *newsNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel     *newsDescriptionLabel;
 
 @end
 
@@ -38,9 +37,9 @@
 
 - (void)setANews:(NewsList *)aNews {
     _aNews = aNews;
-    self.newsNameLabel.text = _aNews.name;
+    self.newsNameLabel.text        = _aNews.name;
     self.newsDescriptionLabel.text = _aNews.newsDescription;
-    NSURL *imageURL = [NSURL URLWithString:_aNews.imgUrl];
+    NSURL *imageURL          = [NSURL URLWithString:_aNews.imgUrl];
     self.newsImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageURL]];
 }
 
