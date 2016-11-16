@@ -29,7 +29,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vFf-Ea-vmS" id="HRp-Yx-7We">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="k4p-wb-HlT">
@@ -40,9 +40,9 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rAV-3F-dOV">
-                                                    <rect key="frame" x="112" y="29" width="255" height="67"/>
+                                                    <rect key="frame" x="112" y="29" width="255" height="66"/>
                                                     <string key="text">Description Description Description Description Description Description Description Description  scr scr scrscr scr scr scr  Description  scr scr scrscr scr scr scr Description  scr scr scrscr scr scr scr Description  scr scr scrscr scr scr scr </string>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <fontDescription key="fontDescription" type="italicSystem" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -90,10 +90,47 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="YFK-Mc-d4P"/>
+                    <connections>
+                        <outlet property="tableView" destination="IPe-6N-cby" id="aks-a6-rlb"/>
+                        <segue destination="bJR-gU-JUv" kind="show" identifier="NADetailsViewController" id="0r7-k7-1BM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="852" y="121.88905547226388"/>
+        </scene>
+        <!--Details View Controller-->
+        <scene sceneID="px1-4d-uQ3">
+            <objects>
+                <viewController id="bJR-gU-JUv" customClass="NADetailsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rdx-Zm-O9X"/>
+                        <viewControllerLayoutGuide type="bottom" id="Xnu-Td-B1b"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GMh-Nv-U7u">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="npi-Gk-5mZ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="npi-Gk-5mZ" firstAttribute="leading" secondItem="GMh-Nv-U7u" secondAttribute="leading" id="9Qe-OP-kWB"/>
+                            <constraint firstItem="npi-Gk-5mZ" firstAttribute="top" secondItem="GMh-Nv-U7u" secondAttribute="top" id="Sys-GK-gm9"/>
+                            <constraint firstItem="npi-Gk-5mZ" firstAttribute="bottom" secondItem="Xnu-Td-B1b" secondAttribute="top" id="c0V-eu-WEW"/>
+                            <constraint firstAttribute="trailing" secondItem="npi-Gk-5mZ" secondAttribute="trailing" id="t0t-xs-jfI"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="naWebView" destination="npi-Gk-5mZ" id="F6Z-1n-Cxd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qHy-u6-fpl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1661.5999999999999" y="121.88905547226388"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="5RX-ud-f3E">

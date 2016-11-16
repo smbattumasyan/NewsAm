@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		807D7EE71DDC93A70028317C /* NADetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 807D7EE61DDC93A70028317C /* NADetailsViewController.m */; };
 		80D54A5E1DDAF993003E1C10 /* NewsAmTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D54A5D1DDAF993003E1C10 /* NewsAmTests.m */; };
 		80D54A691DDAF993003E1C10 /* NewsAmUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D54A681DDAF993003E1C10 /* NewsAmUITests.m */; };
 		80D54AB81DDB4082003E1C10 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D54A441DDAF992003E1C10 /* AppDelegate.m */; };
@@ -44,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		807D7EE51DDC93A70028317C /* NADetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NADetailsViewController.h; sourceTree = "<group>"; };
+		807D7EE61DDC93A70028317C /* NADetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NADetailsViewController.m; sourceTree = "<group>"; };
 		80D54A3D1DDAF992003E1C10 /* NewsAm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsAm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80D54A411DDAF992003E1C10 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		80D54A431DDAF992003E1C10 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -103,6 +106,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		807D7EE11DDC93160028317C /* NADetailsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				807D7EE51DDC93A70028317C /* NADetailsViewController.h */,
+				807D7EE61DDC93A70028317C /* NADetailsViewController.m */,
+			);
+			name = NADetailsViewController;
+			sourceTree = "<group>";
+		};
 		80D54A341DDAF992003E1C10 = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +145,7 @@
 				80D54A891DDB34DB003E1C10 /* CoreData */,
 				80D54A761DDAFA0C003E1C10 /* hpple */,
 				80D54A881DDB1B9A003E1C10 /* NAViewController */,
+				807D7EE11DDC93160028317C /* NADetailsViewController */,
 				80D54A491DDAF992003E1C10 /* Main.storyboard */,
 				80D54A4F1DDAF992003E1C10 /* Assets.xcassets */,
 				80D54A511DDAF992003E1C10 /* LaunchScreen.storyboard */,
@@ -389,6 +402,7 @@
 				80D54ABC1DDB4082003E1C10 /* NLModelManager.m in Sources */,
 				80D54ABD1DDB4082003E1C10 /* TFHpple.m in Sources */,
 				80D54ABE1DDB4082003E1C10 /* TFHppleElement.m in Sources */,
+				807D7EE71DDC93A70028317C /* NADetailsViewController.m in Sources */,
 				80D54ABF1DDB4082003E1C10 /* XPathQuery.m in Sources */,
 				80D54AC01DDB4082003E1C10 /* NATableViewCell.m in Sources */,
 				80D54AD31DDB4CDE003E1C10 /* BusinessLogic.m in Sources */,

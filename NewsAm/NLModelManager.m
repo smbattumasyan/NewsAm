@@ -36,6 +36,7 @@
         newsList.newsDescription = dict[@"newsDescription"];
         newsList.imgUrl = dict[@"imgURL"];
         newsList.date = dict[@"date"];
+        newsList.link = dict[@"link"];
     }
 
     [self.coreDataManager saveContext];

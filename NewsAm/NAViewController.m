@@ -11,6 +11,7 @@
 #import "NATableViewCell.h"
 #import "NLModelManager.h"
 #import "NACoordinator.h"
+#import "NADetailsViewController.h"
 
 @interface NAViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -19,6 +20,8 @@
 @property (strong, nonatomic) NACoordinator *naCoordinator;
 
 @property (strong, nonatomic) NLModelManager *modelManager;
+//@property (strong, nonatomic) NSIndexPath *selectedIndexPath;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 
 @end
@@ -30,15 +33,8 @@
     // Do any additional setup after loading the view, typically from a nib.
 
     self.naCoordinator = [[NACoordinator alloc] init];
-
     [self loadNewsData];
-
     self.modelManager = [NLModelManager defaultManager];
-
-//    NSLog(@"corDataaa :%@", self.modelManager.fetchedResultsController.fetchedObjects);
-
-
-//    [self loadNewsLinks];
 }
 
 
@@ -72,46 +68,31 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self performSegueWithIdentifier:@"NADetailsViewController" sender:self];
+}
+
+
 //-------------------------------------------------------------------------------------------
 #pragma mark - Private Methods
 //-------------------------------------------------------------------------------------------
 
-//- (void)loadNewsLinks {
-//
-//    NSURL *url = [NSURL URLWithString:@"https://news.am/eng/news/allregions/allthemes/2016/11/15/"];
-//    NSString *xPath = @"//div[@class='articles-list casual']/article/div[@class='describe']/div[@class='title']/a";
-//    NSArray *elements = [self getHTMLElementsFrom:url xPath:xPath];
-//
-////    NSLog(@"elements: %@", elements);
-//    /*
-//     //div[@class='dl']/table/tr/td[@class='r']"
-//     */
-//    self.armNews = [[NSMutableArray alloc] init];
-//    self.medNews = [[NSMutableArray alloc] init];
-//    self.sportNews = [[NSMutableArray alloc] init];
-//    self.styleNews = [[NSMutableArray alloc] init];
-//    self.newsName = [[NSMutableArray alloc] init];
-//
-//    for (TFHppleElement *element in elements) {
-//        //        NSLog(@"element: %@", [element objectForKey:@"href"]);
-//
-//        NSLog(@"elements: %@", element.content);
-//        [self.newsName addObject:element.content];
-//        if ([[[element objectForKey:@"href"] substringToIndex:3] isEqualToString:@"arm"]) {
-//            [self.armNews addObject:[@"https://news.am/" stringByAppendingString:[element objectForKey:@"href"]]];
-//        } else if ([[[element objectForKey:@"href"] substringToIndex:4] isEqualToString:@"//me"]) {
-//            [self.armNews addObject:[@"https:" stringByAppendingString:[element objectForKey:@"href"]]];
-//        } else if ([[[element objectForKey:@"href"] substringToIndex:4] isEqualToString:@"//sp"]) {
-//            [self.armNews addObject:[@"https:" stringByAppendingString:[element objectForKey:@"href"]]];
-//        } else if ([[[element objectForKey:@"href"] substringToIndex:4] isEqualToString:@"//st"]) {
-//            [self.armNews addObject:[@"https:" stringByAppendingString:[element objectForKey:@"href"]]];
-//        }
-//
-//        //        [linkList addObject:[element objectForKey:@"href"]];
-//    }
-//
-//    NSLog(@"linkLikst: %@ ", self.armNews);
-//}
+- (NSString *)newsLink:(TFHppleElement *)link {
+
+    NSString *armNews = nil;
+
+
+        if ([[[link objectForKey:@"href"] substringToIndex:3] isEqualToString:@"arm"]) {
+             armNews = [@"https://news.am/" stringByAppendingString:[link objectForKey:@"href"]];
+        } else if ([[[link objectForKey:@"href"] substringToIndex:2] isEqualToString:@"//"]) {
+            armNews = [@"https:" stringByAppendingString:[link objectForKey:@"href"]];
+        }
+
+    NSLog(@"linkLikst: %@ ", armNews);
+    return armNews;
+}
+
+
 // /div[@class='describe']/div[@class='title']/a
 - (void)loadNewsData {
 
@@ -131,21 +112,25 @@
 
         TFHppleElement *imgURl = [[article searchWithXPathQuery:@"//a/img"] firstObject];
         NSString *imageURL = [imgURl objectForKey:@"src"];
-        NSLog(@"photoLink: %@", imageURL);
+//        NSLog(@"photoLink: %@", imageURL);
 
         if (![[imageURL substringToIndex:4] isEqualToString:@"http"]) {
             imageURL = [@"https://news.am" stringByAppendingString:[imgURl objectForKey:@"src"]];
         }
-        NSLog(@"photoLink: %@", imageURL);
+//        NSLog(@"photoLink: %@", imageURL);
         TFHppleElement *dateTime = [[article searchWithXPathQuery:@"//div[@class='describe']/div[@class='date']/time"] firstObject];
 //        NSLog(@"element: %@",[self dateFromString:dateTime.content]);
+
+        TFHppleElement *link = [[article searchWithXPathQuery:@"//div[@class='describe']/div[@class='title']/a"] firstObject];
+
 
 
 
         [self.newsData addObject:@{@"newsTitle" : newsTitle.content,
                                    @"newsDescription" : newsDescription.content,
                                    @"imgURL" : imageURL,
-                                   @"date" : [self dateFromString:dateTime.content]}];
+                                   @"date" : [self dateFromString:dateTime.content],
+                                   @"link" : [self newsLink:link]}];
 
     }
 
@@ -166,6 +151,22 @@
     NSData *data = [NSData dataWithContentsOfURL:url];
     TFHpple *doc = [TFHpple hppleWithHTMLData:data];
     return [doc searchWithXPathQuery:xPath];
+}
+
+//------------------------------------------------------------------------------------------
+#pragma mark - Navigation
+//------------------------------------------------------------------------------------------
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"NADetailsViewController"]) {
+        NADetailsViewController *naDetailsVC = [segue destinationViewController];
+        NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
+        NewsList *newsList = [self.modelManager.fetchedResultsController objectAtIndexPath:selectedIndexPath];
+        NSLog(@"newsList:%@", newsList);
+        naDetailsVC.link = newsList.link;
+    }
 }
 
 

@@ -30,7 +30,20 @@
 }
 
 - (void)saveNews:(NSArray *)newsList {
-    [self.nlModelManager addNews:newsList];
+
+    NSMutableArray<NSDictionary *> *newNewsList = [[NSMutableArray alloc] initWithArray:newsList];
+    NSArray<NewsList *> *savedNews = self.nlModelManager.fetchedResultsController.fetchedObjects;
+
+    for (NSInteger i = newsList.count-1 ; i >= 0; i--) {
+        for (NSInteger j = 0; j < savedNews.count; j++) {
+            if ([[newNewsList[i] objectForKey:@"date"] isEqualToDate:savedNews[j].date]) {
+                [newNewsList removeObject:newNewsList[i]];
+                break;
+            }
+        }
+    }
+    NSLog(@"newNewsList: %@", newNewsList);
+    [self.nlModelManager addNews:newNewsList];
 }
 
 @end
