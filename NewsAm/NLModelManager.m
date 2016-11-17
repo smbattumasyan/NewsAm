@@ -53,7 +53,7 @@
     }
 
     NSFetchRequest *request          = [NewsList fetchRequest];
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
     [request setSortDescriptors:@[sortDescriptor]];
     _fetchedResultsController        = [[NSFetchedResultsController alloc] initWithFetchRequest:request
                                                                            managedObjectContext:self.coreDataManager.persistentContainer.viewContext
