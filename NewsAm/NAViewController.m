@@ -21,6 +21,7 @@
 @property (strong, nonatomic) NSMutableArray *newsData;
 @property (strong, nonatomic) NACoordinator  *naCoordinator;
 @property (strong, nonatomic) NLModelManager *modelManager;
+@property (strong, nonatomic) UIRefreshControl * refreshControl;
 
 //------------------------------------------------------------------------------------------
 #pragma mark - IBOutlets
@@ -38,10 +39,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.modelManager  = [NLModelManager defaultManager];
-    self.naCoordinator = [[NACoordinator alloc] init];
-    self.modelManager.fetchedResultsController.delegate = self;
+    [self setupTableView];
     [self loadNewsData];
+    [self updateData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -77,6 +77,23 @@
 //-------------------------------------------------------------------------------------------
 #pragma mark - Private Methods
 //-------------------------------------------------------------------------------------------
+
+- (void)setupTableView {
+    self.modelManager  = [NLModelManager defaultManager];
+    self.naCoordinator = [[NACoordinator alloc] init];
+    self.modelManager.fetchedResultsController.delegate = self;
+}
+
+- (void)updateData {
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:self.refreshControl];
+}
+
+- (void)handleRefresh:(NSString *)str {
+    [self loadNewsData];
+    [self.refreshControl endRefreshing];
+}
 
 - (NSString *)newsLink:(TFHppleElement *)link {
 
