@@ -7,6 +7,7 @@
 //
 
 #import "NATableViewCell.h"
+#import <SDWebImage/SDWebImage.h>
 
 @interface NATableViewCell ()
 
@@ -40,7 +41,8 @@
     self.newsNameLabel.text        = _aNews.name;
     self.newsDescriptionLabel.text = _aNews.newsDescription;
     NSURL *imageURL          = [NSURL URLWithString:_aNews.imgUrl];
-    self.newsImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageURL]];
+//    self.newsImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageURL]];
+    [self.newsImageView sd_setImageWithURL:imageURL];
 }
 
 @end
