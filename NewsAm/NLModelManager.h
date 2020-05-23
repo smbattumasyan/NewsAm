@@ -15,6 +15,7 @@
 #pragma Mark - Propertyes
 @property (strong, nonatomic) CoreDataManager            *coreDataManager;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (strong, nonatomic) NSFetchedResultsController *fetchedSavedResultsController;
 
 #pragma Mark - Class Methods
 + (instancetype)defaultManager;

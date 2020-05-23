@@ -13,5 +13,6 @@
 
 #pragma Mark - Propertyes
 @property (strong, nonatomic) NewsList *aNews;
+@property (copy) void(^save)(void);
 
 @end

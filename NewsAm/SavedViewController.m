@@ -1,26 +1,26 @@
 //
-//  NAViewController.m
+//  SavedViewController.m
 //  NewsAm
 //
-//  Created by Smbat Tumasyan on 11/15/16.
-//  Copyright © 2016 Smbat Tumasyan. All rights reserved.
+//  Created by Smbat Tumasyan on 5/23/20.
+//  Copyright © 2020 Smbat Tumasyan. All rights reserved.
 //
 
-#import "NAViewController.h"
+#import "SavedViewController.h"
 #import "TFHpple.h"
 #import "NATableViewCell.h"
 #import "NLModelManager.h"
 #import "NACoordinator.h"
 #import "NADetailsViewController.h"
 
-@interface NAViewController () <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, UIScrollViewDelegate>
+@interface SavedViewController ()<UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, UIScrollViewDelegate>
 
 //------------------------------------------------------------------------------------------
 #pragma mark - Properties
 //------------------------------------------------------------------------------------------
 @property (strong, nonatomic) NSMutableArray *newsData;
 @property (strong, nonatomic) NACoordinator  *naCoordinator;
-@property (strong, nonatomic) __block NLModelManager *modelManager;
+@property (strong, nonatomic) NLModelManager *modelManager;
 @property (strong, nonatomic) UIRefreshControl * refreshControl;
 
 //------------------------------------------------------------------------------------------
@@ -30,7 +30,7 @@
 
 @end
 
-@implementation NAViewController
+@implementation SavedViewController
 
 //-------------------------------------------------------------------------------------------
 #pragma mark - Life Cyrcle
@@ -40,14 +40,12 @@
     [super viewDidLoad];
 
     [self setupTableView];
-    [self loadNewsData];
     [self updateData];
 }
 
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.navigationController.navigationBar.topItem setTitle:@"News Feed"];
+    [self.navigationController.navigationBar.topItem setTitle:@"Saved"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,7 +58,7 @@
 //-------------------------------------------------------------------------------------------
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.modelManager.fetchedResultsController.fetchedObjects.count;
+    return self.modelManager.fetchedSavedResultsController.fetchedObjects.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -70,33 +68,21 @@
     if(cell == nil) {
         cell = [[NATableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
-    NewsList *newsList = [self.modelManager.fetchedResultsController objectAtIndexPath:indexPath];
+    NewsList *newsList = [self.modelManager.fetchedSavedResultsController objectAtIndexPath:indexPath];
     cell.aNews         = newsList;
-    cell.save = ^{
-        [self.modelManager.coreDataManager saveContext];
-    };
 
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
+    
     NADetailsViewController *naDetailsVC = [NADetailsViewController create];
     NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
-    NewsList *newsList = [self.modelManager.fetchedResultsController objectAtIndexPath:selectedIndexPath];
+    NewsList *newsList = [self.modelManager.fetchedSavedResultsController objectAtIndexPath:selectedIndexPath];
     newsList.new = false;
     naDetailsVC.link   = newsList.link;
     [self.modelManager.coreDataManager saveContext];
     [self.navigationController pushViewController:naDetailsVC animated:true];
-}
-
-//-------------------------------------------------------------------------------------------
-#pragma mark - ScrollView
-//-------------------------------------------------------------------------------------------
-
--(void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    NSArray* indexPaths = self.tableView.indexPathsForVisibleRows;
-    
 }
 
 //-------------------------------------------------------------------------------------------
@@ -106,7 +92,7 @@
 - (void)setupTableView {
     self.modelManager  = [NLModelManager defaultManager];
     self.naCoordinator = [[NACoordinator alloc] init];
-    self.modelManager.fetchedResultsController.delegate = self;
+    self.modelManager.fetchedSavedResultsController.delegate = self;
 }
 
 - (void)updateData {
@@ -116,7 +102,7 @@
 }
 
 - (void)handleRefresh:(NSString *)str {
-    [self loadNewsData];
+    [self.tableView reloadData];
     [self.refreshControl endRefreshing];
 }
 
@@ -154,10 +140,7 @@
                                    @"newsDescription" : newsDescription.content,
                                    @"imgURL" : imageURL,
                                    @"date" : [self dateFromString:dateTime.content],
-                                   @"link" : [self newsLink:link],
-                                   @"new" : @YES,
-                                   @"saved" : @NO,
-        }];
+                                   @"link" : [self newsLink:link]}];
 
     }
 
@@ -231,5 +214,21 @@
     [self.tableView endUpdates];
 }
 
+//------------------------------------------------------------------------------------------
+#pragma mark - Navigation
+//------------------------------------------------------------------------------------------
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"NADetailsViewController"]) {
+        NADetailsViewController *naDetailsVC = [segue destinationViewController];
+        NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
+        NewsList *newsList = [self.modelManager.fetchedSavedResultsController objectAtIndexPath:selectedIndexPath];
+        naDetailsVC.link   = newsList.link;
+    }
+}
+
 
 @end
+
+

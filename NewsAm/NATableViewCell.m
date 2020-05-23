@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *newsImageView;
 @property (weak, nonatomic) IBOutlet UILabel     *newsNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel     *newsDescriptionLabel;
+@property (weak, nonatomic) IBOutlet UIButton *saveButton;
 
 @end
 
@@ -27,7 +28,6 @@
 //------------------------------------------------------------------------------------------
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -36,13 +36,20 @@
     // Configure the view for the selected state
 }
 
+- (IBAction)saveButtonAction:(UIButton *)sender {
+    [self.saveButton setSelected:!sender.isSelected];
+    _aNews.saved = self.saveButton.isSelected;
+    self.save();
+}
+
 - (void)setANews:(NewsList *)aNews {
     _aNews = aNews;
     self.newsNameLabel.text        = _aNews.name;
     self.newsDescriptionLabel.text = _aNews.newsDescription;
+//    self.backgroundColor = _aNews.new ? [UIColor grayColor] : [UIColor whiteColor];
     NSURL *imageURL          = [NSURL URLWithString:_aNews.imgUrl];
-//    self.newsImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageURL]];
     [self.newsImageView sd_setImageWithURL:imageURL];
+    [self.saveButton setSelected:_aNews.saved];
 }
 
 @end

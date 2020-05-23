@@ -19,6 +19,11 @@
 
 @implementation NADetailsViewController
 
++ (NADetailsViewController *)create {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+    return  [storyboard instantiateViewControllerWithIdentifier:@"NADetailsViewController"];
+}
+
 //------------------------------------------------------------------------------------------
 #pragma mark - Life Cyrcle
 //------------------------------------------------------------------------------------------

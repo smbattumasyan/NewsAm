@@ -41,6 +41,9 @@
         newsList.imgUrl = dict[@"imgURL"];
         newsList.date = dict[@"date"];
         newsList.link = dict[@"link"];
+        newsList.new = dict[@"new"];
+        newsList.saved = dict[@"saved"];
+        NSLog(@"new: %@",dict[@"new"]);
     }
 
     [self.coreDataManager saveContext];
@@ -48,7 +51,7 @@
 
 - (NSFetchedResultsController *)fetchedResultsController
 {
-    if (_fetchedResultsController != nil) {
+    if (_fetchedSavedResultsController != nil) {
         return _fetchedResultsController;
     }
 
@@ -66,4 +69,37 @@
     return _fetchedResultsController;
 }
 
+- (NSFetchedResultsController *)fetchedSavedResultsController
+{
+    if (_fetchedSavedResultsController != nil) {
+        return _fetchedSavedResultsController;
+    }
+
+    NSFetchRequest *request          = [NewsList fetchRequest];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"saved == YES"];
+    [request setPredicate:predicate];
+    [request setSortDescriptors:@[sortDescriptor]];
+    _fetchedSavedResultsController        = [[NSFetchedResultsController alloc] initWithFetchRequest:request
+                                                                           managedObjectContext:self.coreDataManager.persistentContainer.viewContext
+                                                                             sectionNameKeyPath:nil cacheName:nil];
+    NSError *error = nil;
+    if (![_fetchedSavedResultsController performFetch:&error]) {
+        NSLog(@"Error Description: %@",[error userInfo]);
+    }
+
+    return _fetchedSavedResultsController;
+}
+
 @end
+
+
+//    [NSFetchedResultsController deleteCacheWithName:nil];
+//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"saved == YES"];
+//    [self.modelManager.fetchedResultsController.fetchRequest setPredicate:predicate];
+//
+//    NSError *error = nil;
+//    if (![self.modelManager.fetchedResultsController performFetch:&error]) {
+//        NSLog(@"%@, %@", error, [error userInfo]);
+//        abort();
+//    }

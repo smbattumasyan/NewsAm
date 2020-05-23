@@ -10,6 +10,9 @@
 
 @interface NADetailsViewController : UIViewController
 
+#pragma Mark - Methods
++ (NADetailsViewController *)create;
+
 #pragma Mark - Propertyes
 @property(strong, nonatomic)NSString *link;
 
