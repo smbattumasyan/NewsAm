@@ -12,8 +12,10 @@
 #import "NLModelManager.h"
 #import "NACoordinator.h"
 #import "NADetailsViewController.h"
+#import "BNHtmlPdfKit.h"
+#import "Helper.h"
 
-@interface NAViewController () <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, UIScrollViewDelegate>
+@interface NAViewController () <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, UIScrollViewDelegate, BNHtmlPdfKitDelegate>
 
 //------------------------------------------------------------------------------------------
 #pragma mark - Properties
@@ -22,6 +24,7 @@
 @property (strong, nonatomic) NACoordinator  *naCoordinator;
 @property (strong, nonatomic) __block NLModelManager *modelManager;
 @property (strong, nonatomic) UIRefreshControl * refreshControl;
+@property (strong, nonatomic) BNHtmlPdfKit *htmlPdfKit;
 
 //------------------------------------------------------------------------------------------
 #pragma mark - IBOutlets
@@ -73,7 +76,9 @@
     NewsList *newsList = [self.modelManager.fetchedResultsController objectAtIndexPath:indexPath];
     cell.aNews         = newsList;
     cell.save = ^{
+        
         [self.modelManager.coreDataManager saveContext];
+        [self createPdf: newsList.link];
     };
 
     return cell;
@@ -159,9 +164,24 @@
                                    @"saved" : @NO,
         }];
 
+        NSLog(@"%@",[self randomStringWithLength:10]);
     }
 
     [self.naCoordinator saveNewsDataToDatabase:self.newsData];
+}
+
+
+
+- (NSString *)randomStringWithLength: (int) len {
+
+    NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    NSMutableString *randomString = [NSMutableString stringWithCapacity: len];
+
+    for (int i=0; i<len; i++) {
+         [randomString appendFormat: @"%C", [letters characterAtIndex: arc4random_uniform([letters length])]];
+    }
+
+    return randomString;
 }
 
 - (NSDate *)dateFromString:(NSString *)stringDate {
@@ -184,6 +204,15 @@
     NSData *data = [NSData dataWithContentsOfURL:url];
     TFHpple *doc = [TFHpple hppleWithHTMLData:data];
     return [doc searchWithXPathQuery:xPath];
+}
+
+- (void) createPdf:(NSString *)link {
+    _htmlPdfKit = [[BNHtmlPdfKit alloc] init];
+    _htmlPdfKit.delegate = self;
+    _htmlPdfKit.pageSize = BNPageSizeCustom;
+    _htmlPdfKit.customPageSize = CGSizeMake(375, 1500);
+    NSString *strID = [link substringWithRange:NSMakeRange(link.length-11, 6)];
+    [_htmlPdfKit saveUrlAsPdf:[NSURL URLWithString:link] toFile: [Helper createFilePath: link]];
 }
 
 //-------------------------------------------------------------------------------------------
@@ -229,6 +258,14 @@
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     [self.tableView endUpdates];
+}
+
+//-------------------------------------------------------------------------------------------
+#pragma mark - BNHtmlPdfKitDelegate
+//-------------------------------------------------------------------------------------------
+
+- (void)htmlPdfKit:(BNHtmlPdfKit *)htmlPdfKit didSavePdfFile:(NSString *)file {
+    NSLog(@"fil: %@", file);
 }
 
 

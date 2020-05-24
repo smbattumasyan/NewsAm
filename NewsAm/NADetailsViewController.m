@@ -7,8 +7,9 @@
 //
 
 #import "NADetailsViewController.h"
+#import "Helper.h"
 
-@interface NADetailsViewController ()
+@interface NADetailsViewController () <UIWebViewDelegate>
 
 //------------------------------------------------------------------------------------------
 #pragma mark - IBOutlets
@@ -32,6 +33,24 @@
     // Do any additional setup after loading the view.
 
     [self loadURL];
+    self.naWebView.delegate = self;
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(save)];
+
+}
+
+- (void)save {
+    
+    // Determile cache file path
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *filePath = [NSString stringWithFormat:@"%@/%@", [paths objectAtIndex:0],self.link];
+//
+//    // Download and write to file
+//    NSURL *url = [NSURL URLWithString:self.link];
+//    NSData *urlData = [NSData dataWithContentsOfURL:url];
+//    [urlData writeToFile:filePath atomically:YES];
+
+    // Load file in UIWebView
+//    [web loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:filePath]]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,19 +63,30 @@
 //------------------------------------------------------------------------------------------
 
 - (void)loadURL {
+    
+    NSString *filePath = [Helper createFilePath: self.link];
+    NSLog(@"filepath: %@", filePath);
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        NSData *data = [[NSFileManager defaultManager] contentsAtPath:filePath];
+        [self.naWebView loadData:data MIMEType: @"application/pdf" textEncodingName: @"" baseURL:[NSURL URLWithString:@"google.com"]];
+        return;
+    }
+    
     NSURL *url = [NSURL URLWithString:self.link];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
     [self.naWebView loadRequest:urlRequest];
 }
+//------------------------------------------------------------------------------------------
+#pragma mark - WebView Delegate
+//------------------------------------------------------------------------------------------
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    NSLog(@"webview finished%i", webView.isLoading);
+    if (webView.isLoading){
+        return;
+    }
+    
+    NSLog(@"%f", webView.scrollView.contentSize.height);
 }
-*/
 
 @end

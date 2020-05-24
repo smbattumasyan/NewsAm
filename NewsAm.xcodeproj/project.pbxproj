@@ -11,6 +11,8 @@
 		1712E7712479434200004005 /* libSDWebImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1712E7702479434200004005 /* libSDWebImage.a */; };
 		1712E77524794F1B00004005 /* SavedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1712E77424794F1B00004005 /* SavedViewController.m */; };
 		1712E77A2479530800004005 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1712E7792479530800004005 /* SettingsViewController.m */; };
+		1712E78B247A5A1F00004005 /* BNHtmlPdfKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 1712E789247A5A1F00004005 /* BNHtmlPdfKit.m */; };
+		1712E78E247A692C00004005 /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1712E78D247A692C00004005 /* Helper.m */; };
 		807D7EE71DDC93A70028317C /* NADetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 807D7EE61DDC93A70028317C /* NADetailsViewController.m */; };
 		80D54A5E1DDAF993003E1C10 /* NewsAmTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D54A5D1DDAF993003E1C10 /* NewsAmTests.m */; };
 		80D54A691DDAF993003E1C10 /* NewsAmUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D54A681DDAF993003E1C10 /* NewsAmUITests.m */; };
@@ -60,6 +62,10 @@
 		1712E7832479613400004005 /* NewsList+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NewsList+CoreDataProperties.m"; path = "/Users/smbattumasyan/workspace/NewsAm/NewsAm/NewsList+CoreDataProperties.m"; sourceTree = "<absolute>"; };
 		1712E7842479613500004005 /* NewsList+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NewsList+CoreDataProperties.h"; path = "/Users/smbattumasyan/workspace/NewsAm/NewsAm/NewsList+CoreDataProperties.h"; sourceTree = "<absolute>"; };
 		1712E7852479613500004005 /* NewsList+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NewsList+CoreDataClass.h"; path = "/Users/smbattumasyan/workspace/NewsAm/NewsAm/NewsList+CoreDataClass.h"; sourceTree = "<absolute>"; };
+		1712E789247A5A1F00004005 /* BNHtmlPdfKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNHtmlPdfKit.m; sourceTree = "<group>"; };
+		1712E78A247A5A1F00004005 /* BNHtmlPdfKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNHtmlPdfKit.h; sourceTree = "<group>"; };
+		1712E78C247A692C00004005 /* Helper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Helper.h; sourceTree = "<group>"; };
+		1712E78D247A692C00004005 /* Helper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Helper.m; sourceTree = "<group>"; };
 		3653A2634C5A16AA6F275B82 /* Pods-NewsAmUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsAmUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NewsAmUITests/Pods-NewsAmUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5C5F1ADAF90DE77BF9F61383 /* Pods-NewsAmUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsAmUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NewsAmUITests/Pods-NewsAmUITests.release.xcconfig"; sourceTree = "<group>"; };
 		67446730BF56D7CBB22AEBE7 /* libPods-NewsAmTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NewsAmTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,6 +174,18 @@
 			name = NewsListModel;
 			sourceTree = "<group>";
 		};
+		1712E788247A59F000004005 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				1712E78A247A5A1F00004005 /* BNHtmlPdfKit.h */,
+				1712E789247A5A1F00004005 /* BNHtmlPdfKit.m */,
+				80D54A761DDAFA0C003E1C10 /* hpple */,
+				1712E78C247A692C00004005 /* Helper.h */,
+				1712E78D247A692C00004005 /* Helper.m */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
 		807D7EE11DDC93160028317C /* NADetailsViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -204,8 +222,8 @@
 			children = (
 				80D54A431DDAF992003E1C10 /* AppDelegate.h */,
 				80D54A441DDAF992003E1C10 /* AppDelegate.m */,
+				1712E788247A59F000004005 /* Utility */,
 				80D54A891DDB34DB003E1C10 /* CoreData */,
-				80D54A761DDAFA0C003E1C10 /* hpple */,
 				80D54AD01DDB4CB7003E1C10 /* BusinessLogic */,
 				80D54A881DDB1B9A003E1C10 /* NAViewController */,
 				1712E77624794F2800004005 /* SavedViewController */,
@@ -541,10 +559,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1712E78B247A5A1F00004005 /* BNHtmlPdfKit.m in Sources */,
 				1712E77524794F1B00004005 /* SavedViewController.m in Sources */,
 				80D54AB81DDB4082003E1C10 /* AppDelegate.m in Sources */,
 				80D54AB91DDB4082003E1C10 /* CoreDataManager.m in Sources */,
 				80D54ABC1DDB4082003E1C10 /* NLModelManager.m in Sources */,
+				1712E78E247A692C00004005 /* Helper.m in Sources */,
 				80D54ABD1DDB4082003E1C10 /* TFHpple.m in Sources */,
 				80D54ABE1DDB4082003E1C10 /* TFHppleElement.m in Sources */,
 				807D7EE71DDC93A70028317C /* NADetailsViewController.m in Sources */,

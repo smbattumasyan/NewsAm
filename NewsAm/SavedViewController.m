@@ -80,7 +80,7 @@
     NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
     NewsList *newsList = [self.modelManager.fetchedSavedResultsController objectAtIndexPath:selectedIndexPath];
     newsList.new = false;
-    naDetailsVC.link   = newsList.link;
+    naDetailsVC.link = newsList.link;
     [self.modelManager.coreDataManager saveContext];
     [self.navigationController pushViewController:naDetailsVC animated:true];
 }
