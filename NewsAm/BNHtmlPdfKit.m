@@ -411,7 +411,7 @@
 	if (complete) {
 		[self _savePdf];
 	} else {
-		[self performSelector:@selector(_timeout) withObject:nil afterDelay:10.0f];
+		[self performSelector:@selector(_timeout) withObject:nil afterDelay:5.0f];
 	}
 }
 

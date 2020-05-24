@@ -17,6 +17,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+    if (@available(iOS 13.0, *)) {
+        window.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
+    }
     return YES;
 }
 

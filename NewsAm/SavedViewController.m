@@ -12,6 +12,7 @@
 #import "NLModelManager.h"
 #import "NACoordinator.h"
 #import "NADetailsViewController.h"
+#import "Helper.h"
 
 @interface SavedViewController ()<UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, UIScrollViewDelegate>
 
@@ -21,7 +22,10 @@
 @property (strong, nonatomic) NSMutableArray *newsData;
 @property (strong, nonatomic) NACoordinator  *naCoordinator;
 @property (strong, nonatomic) NLModelManager *modelManager;
-@property (strong, nonatomic) UIRefreshControl * refreshControl;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
+@property (strong, nonatomic) UILabel *infoLabel;
+@property (assign) int savedItemindex;
+@property (assign) unsigned long sizeInfo;
 
 //------------------------------------------------------------------------------------------
 #pragma mark - IBOutlets
@@ -41,12 +45,33 @@
 
     [self setupTableView];
     [self updateData];
+    if (@available(iOS 13.0, *)) {
+        self.tableView.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
+    }
+    
+    self.infoLabel = [[UILabel alloc] initWithFrame:CGRectMake(16, 0, 100, self.navigationController.navigationBar.frame.size.height)];
+    [self.navigationController.navigationBar addSubview:self.infoLabel];
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar.topItem setTitle:@"Saved"];
+    self.infoLabel.text = @"0 Kb";
+    self.savedItemindex = 0;
+    self.sizeInfo = 0;
+    [self datasInfo];
+    unsigned long size = [self datasInfo];
+    self.infoLabel.text = size > 1024 ? [NSString stringWithFormat:@"%.1f Mb", size / 1024.f] : [NSString stringWithFormat:@"%lu Kb", size];
+    [self.infoLabel setHidden:NO];
 }
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.infoLabel setHidden:YES];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -80,7 +105,8 @@
     NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
     NewsList *newsList = [self.modelManager.fetchedSavedResultsController objectAtIndexPath:selectedIndexPath];
     newsList.new = false;
-    naDetailsVC.link = newsList.link;
+    naDetailsVC.newsList = newsList;
+    naDetailsVC.modelManager = self.modelManager;
     [self.modelManager.coreDataManager saveContext];
     [self.navigationController pushViewController:naDetailsVC animated:true];
 }
@@ -116,6 +142,25 @@
         }
 
     return armNews;
+}
+
+- (unsigned long)datasInfo {
+    NSArray<NewsList *> *items = self.modelManager.fetchedSavedResultsController.fetchedObjects;
+    if (items.count == 0) {
+        return 0;
+    }
+    NSString *filePath = [Helper createFilePath: items[self.savedItemindex].newsID];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        [self.navigationItem.rightBarButtonItem setTitle:@"Remove"];
+        NSData *data = [[NSFileManager defaultManager] contentsAtPath:filePath];
+        self.sizeInfo += data.length / 1024;
+        if (self.savedItemindex < items.count - 1) {
+            self.savedItemindex += 1;
+            [self datasInfo];
+        }
+    }
+    
+    return self.sizeInfo;
 }
 
 - (void)loadNewsData {
@@ -213,21 +258,6 @@
 {
     [self.tableView endUpdates];
 }
-
-//------------------------------------------------------------------------------------------
-#pragma mark - Navigation
-//------------------------------------------------------------------------------------------
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"NADetailsViewController"]) {
-        NADetailsViewController *naDetailsVC = [segue destinationViewController];
-        NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
-        NewsList *newsList = [self.modelManager.fetchedSavedResultsController objectAtIndexPath:selectedIndexPath];
-        naDetailsVC.link   = newsList.link;
-    }
-}
-
 
 @end
 

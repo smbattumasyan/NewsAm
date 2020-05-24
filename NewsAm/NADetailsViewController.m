@@ -8,13 +8,16 @@
 
 #import "NADetailsViewController.h"
 #import "Helper.h"
+#import "BNHtmlPdfKit.h"
 
-@interface NADetailsViewController () <UIWebViewDelegate>
+@interface NADetailsViewController () <UIWebViewDelegate, BNHtmlPdfKitDelegate>
 
 //------------------------------------------------------------------------------------------
 #pragma mark - IBOutlets
 //------------------------------------------------------------------------------------------
 @property (weak, nonatomic) IBOutlet UIWebView *naWebView;
+@property (strong, nonatomic) BNHtmlPdfKit *htmlPdfKit;
+@property (strong, nonatomic) UIView *animationView;
 
 @end
 
@@ -30,27 +33,35 @@
 //------------------------------------------------------------------------------------------
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-
-    [self loadURL];
+    
     self.naWebView.delegate = self;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(save)];
-
+    
+//    [self.navigationItem.rightBarButtonItem setEnabled:NO];
+    [self loadURL];
 }
 
 - (void)save {
-    
-    // Determile cache file path
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString *filePath = [NSString stringWithFormat:@"%@/%@", [paths objectAtIndex:0],self.link];
-//
-//    // Download and write to file
-//    NSURL *url = [NSURL URLWithString:self.link];
-//    NSData *urlData = [NSData dataWithContentsOfURL:url];
-//    [urlData writeToFile:filePath atomically:YES];
-
-    // Load file in UIWebView
-//    [web loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:filePath]]];
+    if (![Helper connectedToInternet]) {
+        return;
+    }
+    [self.navigationController.navigationBar setUserInteractionEnabled:NO];
+    [self startAnimating];
+    NSLog(@"saved: %i", self.newsList.saved);
+    if (self.newsList.saved) {
+        NSString *filePath = [Helper createFilePath: self.newsList.newsID];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+            [self.navigationItem.rightBarButtonItem setTitle:@"Save"];
+           [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
+            self.newsList.saved = NO;
+            [self stopAnimating];
+            [self.navigationController.navigationBar setUserInteractionEnabled:YES];
+            [self.modelManager.coreDataManager saveContext];
+        }
+        return;
+    }
+    self.newsList.saved = YES;
+    [self createPdf:self.newsList.newsID];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -63,19 +74,47 @@
 //------------------------------------------------------------------------------------------
 
 - (void)loadURL {
-    
-    NSString *filePath = [Helper createFilePath: self.newsID];
-    NSLog(@"filepath: %@", filePath);
+    NSString *filePath = [Helper createFilePath: self.newsList.newsID];
     if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        [self.navigationItem.rightBarButtonItem setTitle:@"Delete"];
         NSData *data = [[NSFileManager defaultManager] contentsAtPath:filePath];
         [self.naWebView loadData:data MIMEType: @"application/pdf" textEncodingName: @"" baseURL:[NSURL URLWithString:@"google.com"]];
         return;
     }
     
-    NSURL *url = [NSURL URLWithString:self.link];
+    NSURL *url = [NSURL URLWithString:self.newsList.link];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
     [self.naWebView loadRequest:urlRequest];
 }
+
+- (void)createPdf:(NSString *)newsID {
+    _htmlPdfKit = [[BNHtmlPdfKit alloc] init];
+    _htmlPdfKit.delegate = self;
+    _htmlPdfKit.pageSize = BNPageSizeCustom;
+    _htmlPdfKit.customPageSize = CGSizeMake(375, 1000);
+    [_htmlPdfKit saveUrlAsPdf:[NSURL URLWithString:self.newsList.link] toFile: [Helper createFilePath: newsID]];
+}
+
+- (void)startAnimating {
+    [self.animationView removeFromSuperview];
+    self.animationView = [[UIView alloc] initWithFrame:UIScreen.mainScreen.bounds];
+    [self.view addSubview: self.animationView];
+    self.animationView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
+    UIActivityIndicatorView *snipper = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    
+    [self.animationView addSubview:snipper];
+    snipper.translatesAutoresizingMaskIntoConstraints = NO;
+    [[snipper.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor] setActive:YES];
+    [[snipper.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor] setActive:YES];
+    
+    
+    [snipper startAnimating];
+}
+
+- (void)stopAnimating {
+    [self.animationView removeFromSuperview];
+}
+
 //------------------------------------------------------------------------------------------
 #pragma mark - WebView Delegate
 //------------------------------------------------------------------------------------------
@@ -85,8 +124,15 @@
     if (webView.isLoading){
         return;
     }
-    
-    NSLog(@"%f", webView.scrollView.contentSize.height);
+//    [self.navigationItem.rightBarButtonItem setEnabled:YES];
+    NSLog(@"h:%f", webView.scrollView.contentSize.height);
+}
+
+- (void)htmlPdfKit:(BNHtmlPdfKit *)htmlPdfKit didSavePdfFile:(NSString *)file {
+    [self stopAnimating];
+    [self.modelManager.coreDataManager saveContext];
+    [self.navigationItem.rightBarButtonItem setTitle:@"Remove"];
+    [self.navigationController.navigationBar setUserInteractionEnabled:YES];
 }
 
 @end

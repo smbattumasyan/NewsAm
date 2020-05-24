@@ -41,10 +41,7 @@
         newsList.imgUrl = dict[@"imgURL"];
         newsList.date = dict[@"date"];
         newsList.link = dict[@"link"];
-        newsList.new = dict[@"new"];
-        newsList.saved = dict[@"saved"];
         newsList.newsID = dict[@"newsID"];
-        NSLog(@"saved: %@",dict[@"saved"]);
     }
 
     [self.coreDataManager saveContext];
@@ -78,7 +75,7 @@
 
     NSFetchRequest *request          = [NewsList fetchRequest];
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"saved == NO"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"saved == YES"];
     [request setPredicate:predicate];
     [request setSortDescriptors:@[sortDescriptor]];
     _fetchedSavedResultsController        = [[NSFetchedResultsController alloc] initWithFetchRequest:request

@@ -5,10 +5,10 @@
         <attribute name="imgUrl" optional="YES" attributeType="String"/>
         <attribute name="link" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="new" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="new" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
         <attribute name="newsDescription" optional="YES" attributeType="String"/>
         <attribute name="newsID" optional="YES" attributeType="String"/>
-        <attribute name="saved" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="saved" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
     </entity>
     <elements>
         <element name="NewsList" positionX="-54" positionY="-9" width="128" height="163"/>

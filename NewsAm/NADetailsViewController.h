@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NLModelManager.h"
 
 @interface NADetailsViewController : UIViewController
 
@@ -14,7 +15,7 @@
 + (NADetailsViewController *)create;
 
 #pragma Mark - Propertyes
-@property(strong, nonatomic)NSString *link;
-@property(strong, nonatomic)NSString *newsID;
+@property(strong, nonatomic)NewsList *newsList;
+@property (strong, nonatomic) __block NLModelManager *modelManager;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "NATableViewCell.h"
 #import <SDWebImage/SDWebImage.h>
+#import "Helper.h"
 
 @interface NATableViewCell ()
 
@@ -28,6 +29,11 @@
 //------------------------------------------------------------------------------------------
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.newsImageView.layer.cornerRadius = 8.f;
+    self.newsImageView.clipsToBounds = YES;
+    if (@available(iOS 13.0, *)) {
+        self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -37,8 +43,9 @@
 }
 
 - (IBAction)saveButtonAction:(UIButton *)sender {
-    [self.saveButton setSelected:!sender.isSelected];
-    _aNews.saved = self.saveButton.isSelected;
+    if (![Helper connectedToInternet]) {
+        return;
+    }
     self.save();
 }
 
@@ -46,7 +53,7 @@
     _aNews = aNews;
     self.newsNameLabel.text        = _aNews.name;
     self.newsDescriptionLabel.text = _aNews.newsDescription;
-//    self.backgroundColor = _aNews.new ? [UIColor grayColor] : [UIColor whiteColor];
+    self.backgroundColor = _aNews.new ? [[UIColor yellowColor] colorWithAlphaComponent:0.1] : [UIColor whiteColor];
     NSURL *imageURL          = [NSURL URLWithString:_aNews.imgUrl];
     [self.newsImageView sd_setImageWithURL:imageURL];
     [self.saveButton setSelected:_aNews.saved];

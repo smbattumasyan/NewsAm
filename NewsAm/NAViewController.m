@@ -25,6 +25,7 @@
 @property (strong, nonatomic) __block NLModelManager *modelManager;
 @property (strong, nonatomic) UIRefreshControl * refreshControl;
 @property (strong, nonatomic) BNHtmlPdfKit *htmlPdfKit;
+@property (strong, nonatomic) UIView *animationView;
 
 //------------------------------------------------------------------------------------------
 #pragma mark - IBOutlets
@@ -45,12 +46,19 @@
     [self setupTableView];
     [self loadNewsData];
     [self updateData];
+    if (@available(iOS 13.0, *)) {
+        self.tableView.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
+    } 
 }
-
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar.topItem setTitle:@"News Feed"];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -77,7 +85,24 @@
     cell.aNews         = newsList;
     cell.save = ^{
         
-        [self.modelManager.coreDataManager saveContext];
+        
+        [self.navigationController.navigationBar setUserInteractionEnabled:NO];
+        [self startAnimating];
+        NSLog(@"saved: %i i: %li", newsList.saved, (long)indexPath.row);
+        if (newsList.saved) {
+            NSString *filePath = [Helper createFilePath: newsList.newsID];
+            if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+                [self.navigationItem.rightBarButtonItem setTitle:@"Save"];
+               [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
+                newsList.saved = NO;
+                [self.navigationController.navigationBar setUserInteractionEnabled:YES];
+                [self.modelManager.coreDataManager saveContext];
+                [self.tableView reloadData];
+            }
+            [self stopAnimating];
+            return;
+        }
+        newsList.saved = YES;
         [self createPdf:newsList.link :newsList.newsID];
     };
 
@@ -90,8 +115,8 @@
     NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
     NewsList *newsList = [self.modelManager.fetchedResultsController objectAtIndexPath:selectedIndexPath];
     newsList.new = false;
-    naDetailsVC.link   = newsList.link;
-    naDetailsVC.newsID   = newsList.newsID;
+    naDetailsVC.newsList   = newsList;
+    naDetailsVC.modelManager = self.modelManager;
     [self.modelManager.coreDataManager saveContext];
     [self.navigationController pushViewController:naDetailsVC animated:true];
 }
@@ -161,8 +186,6 @@
                                    @"imgURL" : imageURL,
                                    @"date" : [self dateFromString:dateTime.content],
                                    @"link" : [self newsLink:link],
-                                   @"new" : @YES,
-                                   @"saved" : @NO,
                                    @"newsID" : [self randomStringWithLength:10],
         }];
     }
@@ -212,6 +235,26 @@
     _htmlPdfKit.pageSize = BNPageSizeCustom;
     _htmlPdfKit.customPageSize = CGSizeMake(375, 1500);
     [_htmlPdfKit saveUrlAsPdf:[NSURL URLWithString:link] toFile: [Helper createFilePath: newsID]];
+}
+
+- (void)startAnimating {
+    [self.animationView removeFromSuperview];
+    self.animationView = [[UIView alloc] initWithFrame:UIScreen.mainScreen.bounds];
+    [self.view addSubview: self.animationView];
+    self.animationView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
+    UIActivityIndicatorView *snipper = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    
+    [self.animationView addSubview:snipper];
+    snipper.translatesAutoresizingMaskIntoConstraints = NO;
+    [[snipper.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor] setActive:YES];
+    [[snipper.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor] setActive:YES];
+    
+    
+    [snipper startAnimating];
+}
+
+- (void)stopAnimating {
+    [self.animationView removeFromSuperview];
 }
 
 //-------------------------------------------------------------------------------------------
@@ -265,6 +308,9 @@
 
 - (void)htmlPdfKit:(BNHtmlPdfKit *)htmlPdfKit didSavePdfFile:(NSString *)file {
     NSLog(@"fil: %@", file);
+    [self.modelManager.coreDataManager saveContext];
+    [self stopAnimating];
+    [self.tableView reloadData];
 }
 
 

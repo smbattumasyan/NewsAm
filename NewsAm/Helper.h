@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface Helper : NSObject
 
 + (NSString *) createFilePath:(NSString *)aString;
++ (BOOL)connectedToInternet;
 
 @end
 
