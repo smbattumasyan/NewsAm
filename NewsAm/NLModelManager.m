@@ -43,6 +43,7 @@
         newsList.link = dict[@"link"];
         newsList.new = dict[@"new"];
         newsList.saved = dict[@"saved"];
+        newsList.newsID = dict[@"newsID"];
         NSLog(@"saved: %@",dict[@"saved"]);
     }
 

@@ -2,7 +2,7 @@
 //  NewsList+CoreDataClass.m
 //  
 //
-//  Created by Smbat Tumasyan on 5/23/20.
+//  Created by Smbat Tumasyan on 5/24/20.
 //
 //
 

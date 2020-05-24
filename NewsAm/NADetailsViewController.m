@@ -64,7 +64,7 @@
 
 - (void)loadURL {
     
-    NSString *filePath = [Helper createFilePath: self.link];
+    NSString *filePath = [Helper createFilePath: self.newsID];
     NSLog(@"filepath: %@", filePath);
     if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
         NSData *data = [[NSFileManager defaultManager] contentsAtPath:filePath];

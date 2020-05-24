@@ -12,8 +12,7 @@
 
 + (NSString *) createFilePath:(NSString *)aString{
     NSString *filePath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *strID = @"abc";//[aString substringWithRange:NSMakeRange(aString.length-11, 6)];
-    return [filePath stringByAppendingString:[NSString stringWithFormat:@"/%@.pdf", strID]];
+    return [filePath stringByAppendingString:[NSString stringWithFormat:@"/%@.pdf", aString]];
 }
 
 

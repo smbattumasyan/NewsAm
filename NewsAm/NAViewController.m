@@ -78,7 +78,7 @@
     cell.save = ^{
         
         [self.modelManager.coreDataManager saveContext];
-        [self createPdf: newsList.link];
+        [self createPdf:newsList.link :newsList.newsID];
     };
 
     return cell;
@@ -91,6 +91,7 @@
     NewsList *newsList = [self.modelManager.fetchedResultsController objectAtIndexPath:selectedIndexPath];
     newsList.new = false;
     naDetailsVC.link   = newsList.link;
+    naDetailsVC.newsID   = newsList.newsID;
     [self.modelManager.coreDataManager saveContext];
     [self.navigationController pushViewController:naDetailsVC animated:true];
 }
@@ -162,9 +163,8 @@
                                    @"link" : [self newsLink:link],
                                    @"new" : @YES,
                                    @"saved" : @NO,
+                                   @"newsID" : [self randomStringWithLength:10],
         }];
-
-        NSLog(@"%@",[self randomStringWithLength:10]);
     }
 
     [self.naCoordinator saveNewsDataToDatabase:self.newsData];
@@ -206,13 +206,12 @@
     return [doc searchWithXPathQuery:xPath];
 }
 
-- (void) createPdf:(NSString *)link {
+- (void) createPdf:(NSString *)link :(NSString *)newsID {
     _htmlPdfKit = [[BNHtmlPdfKit alloc] init];
     _htmlPdfKit.delegate = self;
     _htmlPdfKit.pageSize = BNPageSizeCustom;
     _htmlPdfKit.customPageSize = CGSizeMake(375, 1500);
-    NSString *strID = [link substringWithRange:NSMakeRange(link.length-11, 6)];
-    [_htmlPdfKit saveUrlAsPdf:[NSURL URLWithString:link] toFile: [Helper createFilePath: link]];
+    [_htmlPdfKit saveUrlAsPdf:[NSURL URLWithString:link] toFile: [Helper createFilePath: newsID]];
 }
 
 //-------------------------------------------------------------------------------------------

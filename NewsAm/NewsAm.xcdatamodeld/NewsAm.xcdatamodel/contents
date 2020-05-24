@@ -7,7 +7,7 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="new" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="newsDescription" optional="YES" attributeType="String"/>
-        <attribute name="newsID" optional="YES"/>
+        <attribute name="newsID" optional="YES" attributeType="String"/>
         <attribute name="saved" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
     <elements>

@@ -15,5 +15,6 @@
 
 #pragma Mark - Propertyes
 @property(strong, nonatomic)NSString *link;
+@property(strong, nonatomic)NSString *newsID;
 
 @end
