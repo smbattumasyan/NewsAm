@@ -163,7 +163,7 @@
     return armNews;
 }
 
-- (void)loadNewsData {
+- (BOOL)loadNewsData {
 
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://news.am/arm/news/allregions/allthemes/%@",[self stringFromDate:[NSDate date]]]];
         NSString *xPath   = @"//div[@class='articles-list casual']/article";
@@ -190,7 +190,7 @@
         }];
     }
 
-    [self.naCoordinator saveNewsDataToDatabase:self.newsData];
+    return [self.naCoordinator saveNewsDataToDatabase:self.newsData];
 }
 
 

@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "CoreDataManager.h"
+#import "NAViewController.h"
 
 @interface AppDelegate ()
 
@@ -21,9 +22,22 @@
     if (@available(iOS 13.0, *)) {
         window.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
     }
+    
+    [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval: UIApplicationBackgroundFetchIntervalMinimum];
     return YES;
 }
 
+- (void)application:(UIApplication *)application performFetchWithCompletionHandler:(nonnull void (^)(UIBackgroundFetchResult))completionHandler {
+    NSArray *viewControllers = ((UINavigationController *)self.window.rootViewController.childViewControllers[0]).viewControllers;
+    if (viewControllers.count > 0) {
+        for (id vc in viewControllers) {
+            if ([vc isKindOfClass:[NAViewController class]]) {
+                NAViewController *naVC = (NAViewController *)vc;
+                NSLog(@"%i", [naVC loadNewsData]);
+            }
+        }
+    }
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

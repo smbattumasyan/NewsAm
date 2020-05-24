@@ -15,6 +15,6 @@
 
 #pragma Mark - Class Methods
 + (instancetype)sharedInstance;
-- (void)saveNews:(NSArray *)newsList;
+- (BOOL)saveNews:(NSArray *)newsList;
 
 @end

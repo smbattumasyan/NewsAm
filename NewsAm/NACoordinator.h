@@ -15,6 +15,6 @@
 @property (strong, nonatomic) BusinessLogic* businessLogic;
 
 #pragma Mark - Class Methods
-- (void)saveNewsDataToDatabase:(NSArray *)newsDatas;
+- (BOOL)saveNewsDataToDatabase:(NSArray *)newsDatas;
 
 @end

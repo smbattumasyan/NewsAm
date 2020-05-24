@@ -33,7 +33,7 @@
     return self;
 }
 
-- (void)saveNews:(NSArray *)newsList {
+- (BOOL)saveNews:(NSArray *)newsList {
 
     NSMutableArray<NSDictionary *> *newNewsList = [[NSMutableArray alloc] initWithArray:newsList];
     NSArray<NewsList *> *savedNews = self.nlModelManager.fetchedResultsController.fetchedObjects;
@@ -47,6 +47,7 @@
         }
     }
     [self.nlModelManager addNews:newNewsList];
+    return  newNewsList.count > 0;
 }
 
 @end

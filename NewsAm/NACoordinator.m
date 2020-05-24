@@ -23,8 +23,8 @@
     return self;
 }
 
-- (void)saveNewsDataToDatabase:(NSArray *)newsDatas {
-    [self.businessLogic saveNews:newsDatas];
+- (BOOL)saveNewsDataToDatabase:(NSArray *)newsDatas {
+    return [self.businessLogic saveNews:newsDatas];
 }
 
 @end
