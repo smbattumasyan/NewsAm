@@ -104,7 +104,7 @@
     NADetailsViewController *naDetailsVC = [NADetailsViewController create];
     NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
     NewsList *newsList = [self.modelManager.fetchedSavedResultsController objectAtIndexPath:selectedIndexPath];
-    newsList.new = false;
+    newsList.newItem = false;
     naDetailsVC.newsList = newsList;
     naDetailsVC.modelManager = self.modelManager;
     [self.modelManager.coreDataManager saveContext];

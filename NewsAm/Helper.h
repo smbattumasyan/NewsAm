@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *) createFilePath:(NSString *)aString;
 + (BOOL)connectedToInternet;
++ (void)saveToUserDefaults:(NSInteger)integer forKey:(NSString *)key;
++ (NSInteger)valueFromUserDefaults:(NSString *)key;
 
 @end
 

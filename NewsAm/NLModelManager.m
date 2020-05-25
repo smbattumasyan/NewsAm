@@ -90,14 +90,3 @@
 }
 
 @end
-
-
-//    [NSFetchedResultsController deleteCacheWithName:nil];
-//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"saved == YES"];
-//    [self.modelManager.fetchedResultsController.fetchRequest setPredicate:predicate];
-//
-//    NSError *error = nil;
-//    if (![self.modelManager.fetchedResultsController performFetch:&error]) {
-//        NSLog(@"%@, %@", error, [error userInfo]);
-//        abort();
-//    }

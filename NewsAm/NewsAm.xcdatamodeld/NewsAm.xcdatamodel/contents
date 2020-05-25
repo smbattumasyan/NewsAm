@@ -5,7 +5,7 @@
         <attribute name="imgUrl" optional="YES" attributeType="String"/>
         <attribute name="link" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="new" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <attribute name="newItem" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
         <attribute name="newsDescription" optional="YES" attributeType="String"/>
         <attribute name="newsID" optional="YES" attributeType="String"/>
         <attribute name="saved" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>

@@ -479,7 +479,6 @@
 	}
 
 	if (self.outputFile) {
-        NSLog(@"currentReportData:%@", currentReportData);
 		[currentReportData writeToFile:self.outputFile atomically:YES];
 
 		if ([self.delegate respondsToSelector:@selector(htmlPdfKit:didSavePdfFile:)]) {

@@ -46,6 +46,7 @@
             }
         }
     }
+    
     [self.nlModelManager addNews:newNewsList];
     return  newNewsList.count > 0;
 }

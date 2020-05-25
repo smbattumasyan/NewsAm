@@ -24,5 +24,20 @@
     return i;
 }
 
++(void)saveToUserDefaults:(NSInteger)integer forKey:(NSString *)key
+{
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+
+    if (standardUserDefaults) {
+        [standardUserDefaults setInteger:integer forKey:key];
+        [standardUserDefaults synchronize];
+    }
+}
+
++ (NSInteger)valueFromUserDefaults:(NSString *)key {
+    NSInteger savedValue = [[NSUserDefaults standardUserDefaults] integerForKey:key];
+    return savedValue;
+}
+
 
 @end

@@ -2,7 +2,7 @@
 //  NewsList+CoreDataProperties.h
 //  
 //
-//  Created by Smbat Tumasyan on 5/24/20.
+//  Created by Smbat Tumasyan on 5/25/20.
 //
 //
 
@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *link;
 @property (nullable, nonatomic, copy) NSString *name;
 @property (nullable, nonatomic, copy) NSString *newsDescription;
-@property (nonatomic) BOOL new;
+@property (nonatomic) BOOL newItem;
 @property (nonatomic) BOOL saved;
 @property (nullable, nonatomic, copy) NSString *newsID;
 

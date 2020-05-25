@@ -2,7 +2,7 @@
 //  NewsList+CoreDataProperties.m
 //  
 //
-//  Created by Smbat Tumasyan on 5/24/20.
+//  Created by Smbat Tumasyan on 5/25/20.
 //
 //
 
@@ -19,7 +19,7 @@
 @dynamic link;
 @dynamic name;
 @dynamic newsDescription;
-@dynamic new;
+@dynamic newItem;
 @dynamic saved;
 @dynamic newsID;
 

@@ -10,7 +10,5 @@
 
 @interface NAViewController : UIViewController
 
-- (BOOL)loadNewsData;
-
 @end
 

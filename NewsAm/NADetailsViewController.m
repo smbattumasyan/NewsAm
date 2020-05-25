@@ -47,7 +47,6 @@
     }
     [self.navigationController.navigationBar setUserInteractionEnabled:NO];
     [self startAnimating];
-    NSLog(@"saved: %i", self.newsList.saved);
     if (self.newsList.saved) {
         NSString *filePath = [Helper createFilePath: self.newsList.newsID];
         if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
@@ -120,12 +119,6 @@
 //------------------------------------------------------------------------------------------
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    NSLog(@"webview finished%i", webView.isLoading);
-    if (webView.isLoading){
-        return;
-    }
-//    [self.navigationItem.rightBarButtonItem setEnabled:YES];
-    NSLog(@"h:%f", webView.scrollView.contentSize.height);
 }
 
 - (void)htmlPdfKit:(BNHtmlPdfKit *)htmlPdfKit didSavePdfFile:(NSString *)file {

@@ -2,7 +2,7 @@
 //  NewsList+CoreDataClass.h
 //  
 //
-//  Created by Smbat Tumasyan on 5/24/20.
+//  Created by Smbat Tumasyan on 5/25/20.
 //
 //
 

@@ -14,6 +14,7 @@
 #import "NADetailsViewController.h"
 #import "BNHtmlPdfKit.h"
 #import "Helper.h"
+#import "AppDelegate.h"
 
 @interface NAViewController () <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, UIScrollViewDelegate, BNHtmlPdfKitDelegate>
 
@@ -26,6 +27,7 @@
 @property (strong, nonatomic) UIRefreshControl * refreshControl;
 @property (strong, nonatomic) BNHtmlPdfKit *htmlPdfKit;
 @property (strong, nonatomic) UIView *animationView;
+@property (strong, nonatomic) NSTimer *timer;
 
 //------------------------------------------------------------------------------------------
 #pragma mark - IBOutlets
@@ -44,11 +46,17 @@
     [super viewDidLoad];
 
     [self setupTableView];
-    [self loadNewsData];
     [self updateData];
-    if (@available(iOS 13.0, *)) {
-        self.tableView.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
-    } 
+    [self loadNewsData];
+    
+    [self updateByTimer];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateByTimer) name:@"updateByTimer" object:nil];
+
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -59,6 +67,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self.tableView reloadData];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -84,11 +93,8 @@
     NewsList *newsList = [self.modelManager.fetchedResultsController objectAtIndexPath:indexPath];
     cell.aNews         = newsList;
     cell.save = ^{
-        
-        
         [self.navigationController.navigationBar setUserInteractionEnabled:NO];
         [self startAnimating];
-        NSLog(@"saved: %i i: %li", newsList.saved, (long)indexPath.row);
         if (newsList.saved) {
             NSString *filePath = [Helper createFilePath: newsList.newsID];
             if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
@@ -114,20 +120,11 @@
     NADetailsViewController *naDetailsVC = [NADetailsViewController create];
     NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
     NewsList *newsList = [self.modelManager.fetchedResultsController objectAtIndexPath:selectedIndexPath];
-    newsList.new = false;
+    newsList.newItem = false;
     naDetailsVC.newsList   = newsList;
     naDetailsVC.modelManager = self.modelManager;
     [self.modelManager.coreDataManager saveContext];
     [self.navigationController pushViewController:naDetailsVC animated:true];
-}
-
-//-------------------------------------------------------------------------------------------
-#pragma mark - ScrollView
-//-------------------------------------------------------------------------------------------
-
--(void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    NSArray* indexPaths = self.tableView.indexPathsForVisibleRows;
-    
 }
 
 //-------------------------------------------------------------------------------------------
@@ -138,6 +135,25 @@
     self.modelManager  = [NLModelManager defaultManager];
     self.naCoordinator = [[NACoordinator alloc] init];
     self.modelManager.fetchedResultsController.delegate = self;
+    if (@available(iOS 13.0, *)) {
+        self.tableView.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
+    }
+}
+
+- (void)updateByTimer {
+    NSInteger interval = [Helper valueFromUserDefaults:@"updateFrequency"];
+    if ([self.timer isValid]) {
+        [self.timer invalidate];
+        self.timer = nil;
+    }
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:interval repeats: YES block:^(NSTimer * _Nonnull timer) {
+        if ([self loadNewsData]) {
+            AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            [appDelegate sendNotification:@"Let's check news."];
+            [self.tableView reloadData];
+            [self updateByTimer];
+        }
+    }];
 }
 
 - (void)updateData {
@@ -165,6 +181,7 @@
 
 - (BOOL)loadNewsData {
 
+    NSLog(@"=========== Update Datas ===========");
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://news.am/arm/news/allregions/allthemes/%@",[self stringFromDate:[NSDate date]]]];
         NSString *xPath   = @"//div[@class='articles-list casual']/article";
         NSArray *articles = [self getHTMLElementsFrom:url xPath:xPath];
@@ -189,21 +206,19 @@
                                    @"newsID" : [self randomStringWithLength:10],
         }];
     }
-
+    
     return [self.naCoordinator saveNewsDataToDatabase:self.newsData];
 }
 
 
 
 - (NSString *)randomStringWithLength: (int) len {
-
     NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     NSMutableString *randomString = [NSMutableString stringWithCapacity: len];
 
     for (int i=0; i<len; i++) {
-         [randomString appendFormat: @"%C", [letters characterAtIndex: arc4random_uniform([letters length])]];
+         [randomString appendFormat: @"%C", [letters characterAtIndex: arc4random_uniform((uint32_t)[letters length])]];
     }
-
     return randomString;
 }
 
@@ -307,7 +322,6 @@
 //-------------------------------------------------------------------------------------------
 
 - (void)htmlPdfKit:(BNHtmlPdfKit *)htmlPdfKit didSavePdfFile:(NSString *)file {
-    NSLog(@"fil: %@", file);
     [self.modelManager.coreDataManager saveContext];
     [self stopAnimating];
     [self.tableView reloadData];

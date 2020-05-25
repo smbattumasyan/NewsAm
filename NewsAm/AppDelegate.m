@@ -9,8 +9,10 @@
 #import "AppDelegate.h"
 #import "CoreDataManager.h"
 #import "NAViewController.h"
+#import <UserNotifications/UserNotifications.h>
+#import "Helper.h"
 
-@interface AppDelegate ()
+@interface AppDelegate () <UNUserNotificationCenterDelegate>
 
 @end
 
@@ -24,19 +26,48 @@
     }
     
     [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval: UIApplicationBackgroundFetchIntervalMinimum];
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    [center requestAuthorizationWithOptions:UNAuthorizationOptionAlert | UNAuthorizationOptionBadge | UNAuthorizationOptionSound completionHandler:^(BOOL granted, NSError * _Nullable error) {
+        
+    }];
+    
+    if ([Helper valueFromUserDefaults:@"updateFrequency"] == 0) {
+        [Helper saveToUserDefaults:5 forKey:@"updateFrequency"];
+    }
+    
     return YES;
 }
 
 - (void)application:(UIApplication *)application performFetchWithCompletionHandler:(nonnull void (^)(UIBackgroundFetchResult))completionHandler {
-    NSArray *viewControllers = ((UINavigationController *)self.window.rootViewController.childViewControllers[0]).viewControllers;
-    if (viewControllers.count > 0) {
-        for (id vc in viewControllers) {
-            if ([vc isKindOfClass:[NAViewController class]]) {
-                NAViewController *naVC = (NAViewController *)vc;
-                NSLog(@"%i", [naVC loadNewsData]);
-            }
+    [self sendNotification:@"Hi its news.am"];
+//    NSArray *viewControllers = ((UINavigationController *)self.window.rootViewController.childViewControllers[0]).viewControllers;
+//    if (viewControllers.count > 0) {
+//        for (id vc in viewControllers) {
+//            if ([vc isKindOfClass:[NAViewController class]]) {
+//                NAViewController *naVC = (NAViewController *)vc;
+//            }
+//        }
+//    }
+}
+
+- (void)sendNotification:(NSString *)body {
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    center.delegate = self;
+    [center requestAuthorizationWithOptions:UNAuthorizationOptionAlert | UNAuthorizationOptionBadge | UNAuthorizationOptionSound completionHandler:^(BOOL granted, NSError * _Nullable error) {
+        
+    }];
+
+    UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
+    content.title = @"News.am";
+    content.body = body;
+    content.sound = [UNNotificationSound defaultSound];
+    UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:2.0 repeats:false];
+    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"ContentIdentifier" content:content trigger:trigger];
+    [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+        if (error != nil) {
+            NSLog(@"%@", error.debugDescription);
         }
-    }
+    }];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -65,6 +96,14 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
     [[CoreDataManager defaultManager] saveContext];
+}
+
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler {
+    completionHandler();
+}
+
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
+    completionHandler(UNAuthorizationOptionAlert | UNAuthorizationOptionBadge | UNAuthorizationOptionSound);
 }
 
 

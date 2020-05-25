@@ -286,12 +286,43 @@
                     <view key="view" contentMode="scaleToFill" id="Zea-V9-VyT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="News update frequency" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DXu-vn-6HC">
+                                <rect key="frame" x="16" y="44" width="343" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="8u7-eR-dBJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="3" maxValue="30" translatesAutoresizingMaskIntoConstraints="NO" id="Keg-qh-Lhe">
+                                <rect key="frame" x="14" y="102" width="347" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="29" id="mos-05-hdh"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="frequencySliderAction:" destination="tJY-bO-Rw1" eventType="valueChanged" id="Rgr-E1-kaT"/>
+                                </connections>
+                            </slider>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Keg-qh-Lhe" firstAttribute="leading" secondItem="Zea-V9-VyT" secondAttribute="leading" constant="16" id="3Yi-Ga-RMt"/>
+                            <constraint firstItem="DXu-vn-6HC" firstAttribute="trailing" secondItem="Zea-V9-VyT" secondAttribute="trailingMargin" id="5bx-ul-QvR"/>
+                            <constraint firstItem="DXu-vn-6HC" firstAttribute="leading" secondItem="Zea-V9-VyT" secondAttribute="leadingMargin" id="94j-WZ-NCT"/>
+                            <constraint firstItem="Keg-qh-Lhe" firstAttribute="top" secondItem="DXu-vn-6HC" secondAttribute="bottom" constant="8" id="V42-3O-5DI"/>
+                            <constraint firstAttribute="trailing" secondItem="Keg-qh-Lhe" secondAttribute="trailing" constant="16" id="e23-ww-FTN"/>
+                            <constraint firstItem="DXu-vn-6HC" firstAttribute="top" secondItem="5YP-J3-tH2" secondAttribute="bottom" id="wEI-Ix-UY0"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="more" id="UiQ-IM-If4"/>
+                    <connections>
+                        <outlet property="frequencySlider" destination="Keg-qh-Lhe" id="tsT-As-tpl"/>
+                    </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="-644" y="896"/>
+            <point key="canvasLocation" x="-644" y="895.50224887556226"/>
         </scene>
     </scenes>
     <resources>

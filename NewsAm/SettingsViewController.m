@@ -7,8 +7,10 @@
 //
 
 #import "SettingsViewController.h"
+#import "Helper.h"
 
 @interface SettingsViewController ()
+@property (weak, nonatomic) IBOutlet UISlider *frequencySlider;
 
 @end
 
@@ -16,7 +18,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self.frequencySlider setContinuous: NO];
+    [self.frequencySlider setValue:[Helper valueFromUserDefaults:@"updateFrequency"]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -24,14 +27,10 @@
     [self.navigationController.navigationBar.topItem setTitle:@"Settings"];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)frequencySliderAction:(UISlider *)sender {
+    [Helper saveToUserDefaults:sender.value forKey:@"updateFrequency"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"updateByTimer" object:self];
 }
-*/
+
 
 @end
