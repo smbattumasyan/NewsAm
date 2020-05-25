@@ -146,8 +146,9 @@
         [self.timer invalidate];
         self.timer = nil;
     }
+    NSLog(@"finterval:%lu", interval);
     self.timer = [NSTimer scheduledTimerWithTimeInterval:interval repeats: YES block:^(NSTimer * _Nonnull timer) {
-        if ([self loadNewsData]) {
+        if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive && [self loadNewsData]) {
             AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
             [appDelegate sendNotification:@"Let's check news."];
             [self.tableView reloadData];

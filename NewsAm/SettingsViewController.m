@@ -16,6 +16,10 @@
 
 @implementation SettingsViewController
 
+//------------------------------------------------------------------------------------------
+#pragma mark - Life Cyrcle
+//------------------------------------------------------------------------------------------
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.frequencySlider setContinuous: NO];
@@ -26,6 +30,10 @@
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar.topItem setTitle:@"Settings"];
 }
+
+//------------------------------------------------------------------------------------------
+#pragma mark - IBActions
+//------------------------------------------------------------------------------------------
 
 - (IBAction)frequencySliderAction:(UISlider *)sender {
     [Helper saveToUserDefaults:sender.value forKey:@"updateFrequency"];

@@ -37,7 +37,6 @@
     self.naWebView.delegate = self;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(save)];
     
-//    [self.navigationItem.rightBarButtonItem setEnabled:NO];
     [self loadURL];
 }
 
