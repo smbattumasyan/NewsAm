@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		16FCFCDA3284AD15F31BF3D9 /* libPods-NewsAmTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 67446730BF56D7CBB22AEBE7 /* libPods-NewsAmTests.a */; };
 		1712E7712479434200004005 /* libSDWebImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1712E7702479434200004005 /* libSDWebImage.a */; };
 		1712E77524794F1B00004005 /* SavedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1712E77424794F1B00004005 /* SavedViewController.m */; };
 		1712E77A2479530800004005 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1712E7792479530800004005 /* SettingsViewController.m */; };
@@ -15,8 +14,6 @@
 		1712E78E247A692C00004005 /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1712E78D247A692C00004005 /* Helper.m */; };
 		1712E79F247ADB9A00004005 /* libAFNetworking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1712E79E247ADB9A00004005 /* libAFNetworking.a */; };
 		807D7EE71DDC93A70028317C /* NADetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 807D7EE61DDC93A70028317C /* NADetailsViewController.m */; };
-		80D54A5E1DDAF993003E1C10 /* NewsAmTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D54A5D1DDAF993003E1C10 /* NewsAmTests.m */; };
-		80D54A691DDAF993003E1C10 /* NewsAmUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D54A681DDAF993003E1C10 /* NewsAmUITests.m */; };
 		80D54AB81DDB4082003E1C10 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D54A441DDAF992003E1C10 /* AppDelegate.m */; };
 		80D54AB91DDB4082003E1C10 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D54A911DDB3542003E1C10 /* CoreDataManager.m */; };
 		80D54ABC1DDB4082003E1C10 /* NLModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D54A981DDB37AF003E1C10 /* NLModelManager.m */; };
@@ -33,25 +30,7 @@
 		80D54AD31DDB4CDE003E1C10 /* BusinessLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D54AD21DDB4CDE003E1C10 /* BusinessLogic.m */; };
 		80D54AD61DDC4B3E003E1C10 /* NACoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D54AD51DDC4B3E003E1C10 /* NACoordinator.m */; };
 		C98BDE450FBA27ED37C18421 /* libPods-NewsAm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F9004469C587822FA3A4A83 /* libPods-NewsAm.a */; };
-		FF529DB29ACB212D1F8973EB /* libPods-NewsAmUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A0EB53EB3802C5EF52C4B935 /* libPods-NewsAmUITests.a */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		80D54A5A1DDAF993003E1C10 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 80D54A351DDAF992003E1C10 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 80D54A3C1DDAF992003E1C10;
-			remoteInfo = NewsAm;
-		};
-		80D54A651DDAF993003E1C10 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 80D54A351DDAF992003E1C10 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 80D54A3C1DDAF992003E1C10;
-			remoteInfo = NewsAm;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1712E7702479434200004005 /* libSDWebImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libSDWebImage.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,12 +64,6 @@
 		80D54A4F1DDAF992003E1C10 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		80D54A521DDAF992003E1C10 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		80D54A541DDAF992003E1C10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		80D54A591DDAF993003E1C10 /* NewsAmTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewsAmTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		80D54A5D1DDAF993003E1C10 /* NewsAmTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsAmTests.m; sourceTree = "<group>"; };
-		80D54A5F1DDAF993003E1C10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		80D54A641DDAF993003E1C10 /* NewsAmUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewsAmUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		80D54A681DDAF993003E1C10 /* NewsAmUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsAmUITests.m; sourceTree = "<group>"; };
-		80D54A6A1DDAF993003E1C10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80D54A771DDAFA32003E1C10 /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHpple.h; sourceTree = "<group>"; };
 		80D54A781DDAFA32003E1C10 /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHpple.m; sourceTree = "<group>"; };
 		80D54A791DDAFA32003E1C10 /* TFHppleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHppleElement.h; sourceTree = "<group>"; };
@@ -124,22 +97,6 @@
 				1712E79F247ADB9A00004005 /* libAFNetworking.a in Frameworks */,
 				1712E7712479434200004005 /* libSDWebImage.a in Frameworks */,
 				C98BDE450FBA27ED37C18421 /* libPods-NewsAm.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		80D54A561DDAF993003E1C10 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				16FCFCDA3284AD15F31BF3D9 /* libPods-NewsAmTests.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		80D54A611DDAF993003E1C10 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FF529DB29ACB212D1F8973EB /* libPods-NewsAmUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,8 +159,6 @@
 			isa = PBXGroup;
 			children = (
 				80D54A3F1DDAF992003E1C10 /* NewsAm */,
-				80D54A5C1DDAF993003E1C10 /* NewsAmTests */,
-				80D54A671DDAF993003E1C10 /* NewsAmUITests */,
 				80D54A3E1DDAF992003E1C10 /* Products */,
 				80D54A801DDAFAEB003E1C10 /* Frameworks */,
 				CA0D410D698ED93CAD5C47E6 /* Pods */,
@@ -214,8 +169,6 @@
 			isa = PBXGroup;
 			children = (
 				80D54A3D1DDAF992003E1C10 /* NewsAm.app */,
-				80D54A591DDAF993003E1C10 /* NewsAmTests.xctest */,
-				80D54A641DDAF993003E1C10 /* NewsAmUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -248,24 +201,6 @@
 				80D54A411DDAF992003E1C10 /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		80D54A5C1DDAF993003E1C10 /* NewsAmTests */ = {
-			isa = PBXGroup;
-			children = (
-				80D54A5D1DDAF993003E1C10 /* NewsAmTests.m */,
-				80D54A5F1DDAF993003E1C10 /* Info.plist */,
-			);
-			path = NewsAmTests;
-			sourceTree = "<group>";
-		};
-		80D54A671DDAF993003E1C10 /* NewsAmUITests */ = {
-			isa = PBXGroup;
-			children = (
-				80D54A681DDAF993003E1C10 /* NewsAmUITests.m */,
-				80D54A6A1DDAF993003E1C10 /* Info.plist */,
-			);
-			path = NewsAmUITests;
 			sourceTree = "<group>";
 		};
 		80D54A761DDAFA0C003E1C10 /* hpple */ = {
@@ -361,44 +296,6 @@
 			productReference = 80D54A3D1DDAF992003E1C10 /* NewsAm.app */;
 			productType = "com.apple.product-type.application";
 		};
-		80D54A581DDAF993003E1C10 /* NewsAmTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 80D54A701DDAF993003E1C10 /* Build configuration list for PBXNativeTarget "NewsAmTests" */;
-			buildPhases = (
-				9433BFD9BD3522BF6CE00B69 /* [CP] Check Pods Manifest.lock */,
-				80D54A551DDAF993003E1C10 /* Sources */,
-				80D54A561DDAF993003E1C10 /* Frameworks */,
-				80D54A571DDAF993003E1C10 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				80D54A5B1DDAF993003E1C10 /* PBXTargetDependency */,
-			);
-			name = NewsAmTests;
-			productName = NewsAmTests;
-			productReference = 80D54A591DDAF993003E1C10 /* NewsAmTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		80D54A631DDAF993003E1C10 /* NewsAmUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 80D54A731DDAF993003E1C10 /* Build configuration list for PBXNativeTarget "NewsAmUITests" */;
-			buildPhases = (
-				F72F26038DA31741609AB1D5 /* [CP] Check Pods Manifest.lock */,
-				80D54A601DDAF993003E1C10 /* Sources */,
-				80D54A611DDAF993003E1C10 /* Frameworks */,
-				80D54A621DDAF993003E1C10 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				80D54A661DDAF993003E1C10 /* PBXTargetDependency */,
-			);
-			name = NewsAmUITests;
-			productName = NewsAmUITests;
-			productReference = 80D54A641DDAF993003E1C10 /* NewsAmUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -412,16 +309,6 @@
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = ZRZ7BP5S8U;
 						ProvisioningStyle = Automatic;
-					};
-					80D54A581DDAF993003E1C10 = {
-						CreatedOnToolsVersion = 8.1;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 80D54A3C1DDAF992003E1C10;
-					};
-					80D54A631DDAF993003E1C10 = {
-						CreatedOnToolsVersion = 8.1;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 80D54A3C1DDAF992003E1C10;
 					};
 				};
 			};
@@ -440,27 +327,11 @@
 			projectRoot = "";
 			targets = (
 				80D54A3C1DDAF992003E1C10 /* NewsAm */,
-				80D54A581DDAF993003E1C10 /* NewsAmTests */,
-				80D54A631DDAF993003E1C10 /* NewsAmUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		80D54A571DDAF993003E1C10 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		80D54A621DDAF993003E1C10 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		80D54ACC1DDB44AE003E1C10 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -474,28 +345,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		9433BFD9BD3522BF6CE00B69 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-NewsAmTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		CADA178A5A3B415E0872A8D7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -518,47 +367,9 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F72F26038DA31741609AB1D5 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-NewsAmUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		80D54A551DDAF993003E1C10 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				80D54A5E1DDAF993003E1C10 /* NewsAmTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		80D54A601DDAF993003E1C10 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				80D54A691DDAF993003E1C10 /* NewsAmUITests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		80D54AB71DDB406F003E1C10 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -584,19 +395,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		80D54A5B1DDAF993003E1C10 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 80D54A3C1DDAF992003E1C10 /* NewsAm */;
-			targetProxy = 80D54A5A1DDAF993003E1C10 /* PBXContainerItemProxy */;
-		};
-		80D54A661DDAF993003E1C10 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 80D54A3C1DDAF992003E1C10 /* NewsAm */;
-			targetProxy = 80D54A651DDAF993003E1C10 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		80D54A491DDAF992003E1C10 /* Main.storyboard */ = {
@@ -744,56 +542,6 @@
 			};
 			name = Release;
 		};
-		80D54A711DDAF993003E1C10 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7669D24C8117B2DA1611FF84 /* Pods-NewsAmTests.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = NewsAmTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Smbat.Tumasyan.NewsAmTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NewsAm.app/NewsAm";
-			};
-			name = Debug;
-		};
-		80D54A721DDAF993003E1C10 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F0C2FEED6F6359E467E17C60 /* Pods-NewsAmTests.release.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = NewsAmTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Smbat.Tumasyan.NewsAmTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NewsAm.app/NewsAm";
-			};
-			name = Release;
-		};
-		80D54A741DDAF993003E1C10 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3653A2634C5A16AA6F275B82 /* Pods-NewsAmUITests.debug.xcconfig */;
-			buildSettings = {
-				INFOPLIST_FILE = NewsAmUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Smbat.Tumasyan.NewsAmUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = NewsAm;
-			};
-			name = Debug;
-		};
-		80D54A751DDAF993003E1C10 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5C5F1ADAF90DE77BF9F61383 /* Pods-NewsAmUITests.release.xcconfig */;
-			buildSettings = {
-				INFOPLIST_FILE = NewsAmUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Smbat.Tumasyan.NewsAmUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = NewsAm;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -811,24 +559,6 @@
 			buildConfigurations = (
 				80D54A6E1DDAF993003E1C10 /* Debug */,
 				80D54A6F1DDAF993003E1C10 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		80D54A701DDAF993003E1C10 /* Build configuration list for PBXNativeTarget "NewsAmTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				80D54A711DDAF993003E1C10 /* Debug */,
-				80D54A721DDAF993003E1C10 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		80D54A731DDAF993003E1C10 /* Build configuration list for PBXNativeTarget "NewsAmUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				80D54A741DDAF993003E1C10 /* Debug */,
-				80D54A751DDAF993003E1C10 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
